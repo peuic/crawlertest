@@ -1,0 +1,29 @@
+Data can change according to the lawsuit's phase. I used the id to collect the infos and for each kind of lawsuit I
+applied a different one, according to its nature.
+
+Below, you can see the different kinds of id's according to the lawsuit phase and nature:
+
+Partes:
+(class_ = ‘tabelaLista’, id = ‘tabelaPartes+xx+’)
+
+Fase: Conhecimento
+Tabelas: 0 (Promovido) 1 (Promovente) 2 (Terceiro) e 3 (Testemunha)
+
+Fase: Execução
+Tabelas 29 (Executado) e 30 (Exeqüente)
+
+Processo Criminal
+Tabelas: 2 (Terceiro) 3 (Testemunha) 4 (Vítima) e 16 (Autor do fato)
+
+
+Advogados:
+(class_= ‘tabelaLista’, id = ’tabelaAdvogadoPartes+xx+’) 
+
+Fase: Conhecimento
+Tabelas: 0 (Promovido) 1 (Promovente)
+
+Fase: Execução
+Tabelas 29 (Executado) e 30 (Exeqüente)
+
+Processo Criminal
+Tabelas: 4 (Vítima) e 16 (Autor do fato)
