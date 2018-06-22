@@ -11,10 +11,11 @@ The method for acquiring data may change according to the lawsuit's phase, as sh
 
 from bs4 import BeautifulSoup
 import re
-#import urllib3
+import urllib3
 
 
-r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo4.html', encoding = "ISO-8859-1")
+
+r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo1.html', encoding = "ISO-8859-1")
 data = r.read()
 r.close()
 soup = BeautifulSoup(data, 'html.parser')
@@ -27,7 +28,6 @@ def get_id():
     return numproc [14:40]
 
 print(get_id())
-
 
 #GET PARTIES' NAMES:
 
@@ -42,19 +42,19 @@ print(get_id())
 
 #ADVOGADOS POLO PASSIVO:
 
-def find_lawpp():
-    s_advpp = soup.find(id = 'tabelaAdvogadoPartes29')
-    advpp = s_advpp.get_text()
-    return advpp
+#def find_lawpp():
+    #s_advpp = soup.find(id = 'tabelaAdvogadoPartes29')
+    #advpp = s_advpp.get_text()
+    #return advpp
 
 #ADVOGADOS POLO ATIVO:
 
-def find_lawpa():   
-    s_advpa = soup.find(id = 'tabelaAdvogadoPartes30')
-    advpa = s_advpa.get_text()
-    return advpa
+#def find_lawpa():   
+    #s_advpa = soup.find(id = 'tabelaAdvogadoPartes30')
+    #advpa = s_advpa.get_text()
+    #return advpa
 
-print('Advogado(s) - Polo Ativo: \n\n', find_lawpa()[20:], 'Advogado(s) - Polo Passivo:\n\n', find_lawpp()[20:])
+#print('Advogado(s) - Polo Ativo: \n\n', find_lawpa()[20:], 'Advogado(s) - Polo Passivo:\n\n', find_lawpp()[20:])
 
 #GET LAWYERS DATA (lawsuits in 'knowledge' phase):
 
@@ -73,3 +73,16 @@ print('Advogado(s) - Polo Ativo: \n\n', find_lawpa()[20:], 'Advogado(s) - Polo P
     #return advpa
 
 #print('Advogado(s) - Polo Ativo: \n\n', find_lawpa()[20:], 'Advogado(s) - Polo Passivo:\n\n', find_lawpp()[20:])   
+
+#GET FOLLOWUP (Needs cleaning):
+
+def get_followup():
+    table = soup.find('div', id="Arquivos")
+    tablet = table.find('table')
+    andamentos = tablet.find_all_next('font', size="2")
+    return andamentos
+
+print(get_followup())
+   
+
+
