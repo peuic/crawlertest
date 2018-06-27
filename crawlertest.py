@@ -1,22 +1,20 @@
 """I started retrieving data from the downloaded lawsuit HTML document using BeautifulSoup.
 Identifying the patterns of the tables in the document, i could pull some data such as
-lawsuit number, lawyers and parties.
+lawsuit number, lawyers and parties' names.
 
-To access differents lawsuits you need to change the number on the file from 1 to 15. Ex: ProcessoX.html
+To access differents lawsuits you need to change the number on the file from 1 to 15. Ex: ProcessoX.html"""
 
-The method for acquiring data may change according to the lawsuit's phase, as shown below.
-
-(Uncomment to see other functions)"""
 
 from bs4 import BeautifulSoup
 import re
 import urllib3
 
 
-r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo1.html', encoding = "ISO-8859-1")
+r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo2.html', encoding = "ISO-8859-1")
 data = r.read()
 r.close()
 soup = BeautifulSoup(data, 'html.parser')
+soupt = BeautifulSoup(data, 'lxml').text
 
 
 #GET LAWSUIT REGISTRATION NUMBER:
@@ -24,20 +22,32 @@ soup = BeautifulSoup(data, 'html.parser')
 def get_id():
     s_numproc = soup.find(class_ = 'primeiraLinha')
     numproc = s_numproc.get_text()
-    return numproc [14:40]
+    proc_id = numproc [14:40]
+    return proc_id
 
 print(get_id())
 
 
-#FIND JUDGE AND COURT
+#FIND JUDGE
 
 def find_judge():
-    judge = soup.find('b', string=re.compile(r'Juiz')).parent
-    juizz = judge.get_text()
-    juiz = juizz.replace ('Histórico de Juízes', '')
-    return juiz
+    judges_in = soupt.find('Juiz: ')
+    judges_lim = soupt.find('Histórico de Juízes')
+    judge = soupt[judges_in:judges_lim] 
+    return judge
 
 print(find_judge())
+
+
+#FIND LAWSUIT VALUE
+
+def get_value():
+    val = soupt.find('Valor da Causa')
+    val_l = soupt.find('Último Evento')
+    l_value = soupt[val:val_l]
+    return l_value
+
+print(get_value())
 
 #GET PARTIES' NAMES (Needs formating):
 
@@ -46,29 +56,39 @@ def get_partiespp():
     partes = soup.find(id = 'tabelaPartes29')
     if partes != None:
         partest = partes.get_text()
-        partiespp = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
-        return partiespp
+        partiespp = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
+        return partiespp[9:]
     else:
         partes = soup.find(id = 'tabelaPartes0')
-        partest= partes.get_text()
-        partiespp = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
-        return partiespp
+        if partes != None:
+            partest= partes.get_text()
+            partiespp = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
+            return partiespp[9:]
+        else:
+            return ''
 
 #Partes Polo Ativo
 def get_partiespa():
     partespa = soup.find(id = 'tabelaPartes30')
     if partespa != None:
         partespa_ = partespa.get_text()
-        partiespa = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
-        return partiespa
+        partiespa = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
+        return partiespa[9:]
     else:
         partespa = soup.find(id = 'tabelaPartes1')
-        partespa_ = partespa.get_text()
-        partiespa = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')   
-        return partiespa
+        if partespa != None:
+            partespa_ = partespa.get_text()
+            partiespa = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')   
+            return partiespa[9:]
+        else:
+            return ''
 
 
-print ('\n', 'Polo Passivo: ', get_partiespp()[9:], '\n', 'Polo Ativo: ', get_partiespa()[9:])
+print ('\n', 'Polo Passivo: ', get_partiespp(), '\n', 'Polo Ativo: ', get_partiespa())
 
 #GET LAWYERS DATA:
 
@@ -81,8 +101,11 @@ def find_lawpp():
         return advpp
     else:
         s_advppc = soup.find(id = 'tabelaAdvogadoPartes0')
-        advppc = s_advppc.get_text()
-        return advppc
+        if s_advppc != None:
+            advppc = s_advppc.get_text()
+            return advppc
+        else:
+            return ''
 
 
 #ADVOGADOS POLO ATIVO:
@@ -94,8 +117,11 @@ def find_lawpa():
         return advpa
     else:
         s_advpac = soup.find(id = 'tabelaAdvogadoPartes1')
-        advpac_ = s_advpac.get_text()
-        return advpac_
+        if s_advpac != None:
+            advpac_ = s_advpac.get_text()
+            return advpac_
+        else:
+            return ''
 
 
 print('\n', 'Advogados Polo Ativo:', find_lawpa()[20:], '\n Advogados Polo Passivo:', find_lawpp()[20:])
@@ -103,11 +129,11 @@ print('\n', 'Advogados Polo Ativo:', find_lawpa()[20:], '\n Advogados Polo Passi
 
 #GET FOLLOWUP (Needs cleaning):
 
-#def get_followup():
-#    table = soup.find('div', id="Arquivos")
-#    tablet = table.find('table')
-#    andamentos = tablet.find_all_next('td')
-#    return andamentos
+def get_followup():
+    andamentos_ini = soupt.find('Arquivos/Observação')
+    andamentos_fim = soupt.find('var ar = document.getElement')
+    follow_up = soupt[andamentos_ini:andamentos_fim]
+    return follow_up
 
 #print(get_followup())
 
