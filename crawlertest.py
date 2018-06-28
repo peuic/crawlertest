@@ -10,7 +10,7 @@ import re
 import urllib3
 
 
-r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo17.html', encoding = "ISO-8859-1")
+r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo18.html', encoding = "ISO-8859-1")
 data = r.read()
 r.close()
 soup = BeautifulSoup(data, 'html.parser')
@@ -56,16 +56,18 @@ def get_partiespp():
     partes = soup.find(id = 'tabelaPartes29')
     if partes != None:
         partest = partes.get_text()
-        partiespp = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+        partiespp_ = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
         '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
-        return partiespp[9:]
+        partiespp = partiespp_[9:]
+        return partiespp
     else:
         partes = soup.find(id = 'tabelaPartes0')
         if partes != None:
             partest= partes.get_text()
-            partiespp = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+            partiespp_ = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
             '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
-            return partiespp[9:]
+            partiespp = partiespp_[9:] 
+            return partiespp
         else:
             return ''
 
@@ -74,16 +76,18 @@ def get_partiespa():
     partespa = soup.find(id = 'tabelaPartes30')
     if partespa != None:
         partespa_ = partespa.get_text()
-        partiespa = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+        partiespa_ = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
         '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
-        return partiespa[9:]
+        partiespa = partiespa_[9:]
+        return partiespa
     else:
         partespa = soup.find(id = 'tabelaPartes1')
         if partespa != None:
             partespa_ = partespa.get_text()
-            partiespa = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+            partiespa_ = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
             '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')   
-            return partiespa[9:]
+            partiespa = partiespa_[9:]
+            return partiespa
         else:
             return ''
 
