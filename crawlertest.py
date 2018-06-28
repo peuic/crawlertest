@@ -2,7 +2,7 @@
 Identifying the patterns of the tables in the document, i could pull some data such as
 lawsuit number, lawyers and parties' names.
 
-To access differents lawsuits you need to change the number on the file from 1 to 15. Ex: ProcessoX.html"""
+To access differents lawsuits you need to change the number on the file from 1 to 17. Ex: ProcessoX.html"""
 
 
 from bs4 import BeautifulSoup
@@ -10,7 +10,7 @@ import re
 import urllib3
 
 
-r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo2.html', encoding = "ISO-8859-1")
+r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo17.html', encoding = "ISO-8859-1")
 data = r.read()
 r.close()
 soup = BeautifulSoup(data, 'html.parser')
@@ -132,10 +132,10 @@ print('\n', 'Advogados Polo Ativo:', find_lawpa()[20:], '\n Advogados Polo Passi
 def get_followup():
     andamentos_ini = soupt.find('Arquivos/Observação')
     andamentos_fim = soupt.find('var ar = document.getElement')
-    follow_up = soupt[andamentos_ini:andamentos_fim]
+    follow_ups = soupt[andamentos_ini:andamentos_fim]
+    follow_up = follow_ups.replace('\n\n', '')
     return follow_up
 
-#print(get_followup())
-
+print(get_followup())
 
 
