@@ -10,7 +10,7 @@ import re
 import urllib3
 
 
-r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo18.html', encoding = "ISO-8859-1")
+r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo17.html', encoding = "ISO-8859-1")
 data = r.read()
 r.close()
 soup = BeautifulSoup(data, 'html.parser')
@@ -92,7 +92,7 @@ def get_partiespa():
             return ''
 
 
-print ('\n', 'Polo Passivo: ', get_partiespp(), '\n', 'Polo Ativo: ', get_partiespa())
+print ('\n', 'Polo Passivo: ', get_partiespp(), '\n', 'Polo Ativo: ', get_partiespa(), '\n')
 
 #GET LAWYERS DATA:
 
@@ -101,12 +101,14 @@ print ('\n', 'Polo Passivo: ', get_partiespp(), '\n', 'Polo Ativo: ', get_partie
 def find_lawpp():
     s_advpp = soup.find(id = 'tabelaAdvogadoPartes29')
     if s_advpp != None:
-        advpp = s_advpp.get_text()
+        advpp_ = s_advpp.get_text()
+        advpp = advpp_[20:]
         return advpp
     else:
         s_advppc = soup.find(id = 'tabelaAdvogadoPartes0')
         if s_advppc != None:
-            advppc = s_advppc.get_text()
+            advppc_ = s_advppc.get_text()
+            advppc = advppc_[20:]
             return advppc
         else:
             return ''
@@ -117,18 +119,20 @@ def find_lawpp():
 def find_lawpa():   
     s_advpa = soup.find(id = 'tabelaAdvogadoPartes30')
     if s_advpa != None:
-        advpa = s_advpa.get_text()
+        advpa_ = s_advpa.get_text()
+        advpa = advpa_[20:]
         return advpa
     else:
         s_advpac = soup.find(id = 'tabelaAdvogadoPartes1')
         if s_advpac != None:
             advpac_ = s_advpac.get_text()
-            return advpac_
+            advpac = advpac_[20:]
+            return advpac
         else:
             return ''
 
 
-print('\n', 'Advogados Polo Ativo:', find_lawpa()[20:], '\n Advogados Polo Passivo:', find_lawpp()[20:])
+print('Advogados Polo Ativo:', find_lawpa(), '\n Advogados Polo Passivo:', find_lawpp())
 
 
 #GET FOLLOWUP (Needs cleaning):
@@ -140,6 +144,6 @@ def get_followup():
     follow_up = follow_ups.replace('\n\n', '')
     return follow_up
 
-print(get_followup())
+#print(get_followup())
 
 
