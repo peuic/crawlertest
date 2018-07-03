@@ -2,7 +2,7 @@
 Identifying the patterns of the tables in the document, i could pull some data such as
 lawsuit number, lawyers and parties' names.
 
-To access differents lawsuits you need to change the number on the file from 1 to 17. Ex: ProcessoX.html"""
+To access differents lawsuits you need to change the number on the file from 1 to 19. Ex: ProcessoX.html"""
 
 
 from bs4 import BeautifulSoup
@@ -14,7 +14,7 @@ r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo17.html'
 data = r.read()
 r.close()
 soup = BeautifulSoup(data, 'html.parser')
-soupt = BeautifulSoup(data, 'lxml').text
+soupt = BeautifulSoup(data, 'html.parser').text
 
 
 #GET LAWSUIT REGISTRATION NUMBER:
@@ -38,6 +38,28 @@ def find_judge():
 
 print(find_judge())
 
+#GET COURT
+
+def get_court():
+    juizo_in = soupt.find('Juízo')
+    juizo_lim = soupt.find('Juiz: ')
+    juizo_ = soupt[juizo_in:juizo_lim]
+    juizo = juizo_.replace('\n', '')
+    return juizo
+
+print(get_court())
+
+#GET LAWSUIT'S PHASE
+
+def get_phase():
+    fase = soupt.find('Fase')
+    fase_lim = soupt.find('Objeto')
+    faset = soupt[fase:fase_lim]
+    fase_proc = faset.replace ('\n', '').replace('      ', ' ')
+    return fase_proc
+    
+print(get_phase())
+
 
 #FIND LAWSUIT VALUE
 
@@ -45,11 +67,12 @@ def get_value():
     val = soupt.find('Valor da Causa')
     val_l = soupt.find('Último Evento')
     l_value = soupt[val:val_l]
-    return l_value
+    law_value = l_value.replace('\n', '')
+    return law_value
 
 print(get_value())
 
-#GET PARTIES' NAMES (Needs formating):
+#GET PARTIES' NAMES:
 
 #Partes Polo Passivo
 def get_partiespp():
@@ -92,7 +115,7 @@ def get_partiespa():
             return ''
 
 
-print ('\n', 'Polo Passivo: ', get_partiespp(), '\n', 'Polo Ativo: ', get_partiespa(), '\n')
+print ('Polo Passivo:', get_partiespp(), '\n','Polo Ativo: ', get_partiespa(), '\n')
 
 #GET LAWYERS DATA:
 
@@ -132,7 +155,7 @@ def find_lawpa():
             return ''
 
 
-print('Advogados Polo Ativo:', find_lawpa(), '\n Advogados Polo Passivo:', find_lawpp())
+print('Advogados Polo Ativo:', find_lawpa(), '\n Advogados Polo Passivo:',find_lawpp())
 
 
 #GET FOLLOWUP (Needs cleaning):
@@ -145,5 +168,6 @@ def get_followup():
     return follow_up
 
 #print(get_followup())
+
 
 
