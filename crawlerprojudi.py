@@ -8,11 +8,15 @@ To access differents lawsuits you need to change the number on the file from 1 t
 from bs4 import BeautifulSoup
 import re
 import urllib3
+from splinter import Browser
 
+url = 'https://projudi.tjba.jus.br/projudi/interno.jsp?endereco=/projudi/buscas/ProcessosParte'
+url1 = 'https://projudi.tjba.jus.br/projudi/listagens/DadosProcesso?numeroProcesso=3220152991538'
 
-r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo20.html', encoding = "ISO-8859-1")
-data = r.read()
-r.close()
+b = Browser('chrome', headless=True)
+b.visit(url)
+b.visit(url1)
+data = b.html
 soup = BeautifulSoup(data, 'html.parser')
 soupt = BeautifulSoup(data, 'html.parser').text
 
@@ -164,10 +168,10 @@ def get_followup():
     andamentos_ini = soupt.find('Arquivos/Observação')
     andamentos_fim = soupt.find('var ar = document.getElement')
     follow_ups = soupt[andamentos_ini:andamentos_fim]
-    follow_up = follow_ups.replace('\n\n', '')
+    follow_up = follow_ups.replace('\n\n', '').replace('Movimentação sem arquivos', '').replace('Arquivos/Observação', 'Andamentos:')
     return follow_up
 
-#print(get_followup())
+print(get_followup())
 
 
 
