@@ -92,6 +92,14 @@ def get_partiespp():
             partiespp = partiespp_[9:] 
             return partiespp
         else:
+            partes = soup.find(id = 'tabelaPartes16')
+        if partes != None:
+            partest= partes.get_text()
+            partiespp_ = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
+            partiespp = partiespp_[9:] 
+            return partiespp
+        else:
             return ''
 
 #Partes Polo Ativo
@@ -105,6 +113,14 @@ def get_partiespa():
         return partiespa
     else:
         partespa = soup.find(id = 'tabelaPartes1')
+        if partespa != None:
+            partespa_ = partespa.get_text()
+            partiespa_ = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')   
+            partiespa = partiespa_[9:]
+            return partiespa
+        else:
+            partespa = soup.find(id = 'tabelaPartes4')
         if partespa != None:
             partespa_ = partespa.get_text()
             partiespa_ = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
@@ -134,7 +150,13 @@ def find_lawpp():
             advppc = advppc_[20:]
             return advppc
         else:
-            return ''
+            s_advppc = soup.find(id = 'tabelaAdvogadoPartes16')
+        if s_advppc != None:
+            advppc_ = s_advppc.get_text()
+            advppc = advppc_[20:]
+            return advppc
+        else:
+            return''
 
 
 #ADVOGADOS POLO ATIVO:
@@ -147,6 +169,12 @@ def find_lawpa():
         return advpa
     else:
         s_advpac = soup.find(id = 'tabelaAdvogadoPartes1')
+        if s_advpac != None:
+            advpac_ = s_advpac.get_text()
+            advpac = advpac_[20:]
+            return advpac
+        else:
+            s_advpac = soup.find(id = 'tabelaAdvogadoPartes4')
         if s_advpac != None:
             advpac_ = s_advpac.get_text()
             advpac = advpac_[20:]

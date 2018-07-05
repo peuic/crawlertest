@@ -1,8 +1,6 @@
 """I started retrieving data from the downloaded lawsuit HTML document using BeautifulSoup.
 Identifying the patterns of the tables in the document, i could pull some data such as
-lawsuit number, lawyers and parties' names.
-
-To access differents lawsuits you need to change the number on the file from 1 to 19. Ex: ProcessoX.html"""
+lawsuit number, lawyers and parties' names."""
 
 
 from bs4 import BeautifulSoup
@@ -11,7 +9,7 @@ import urllib3
 from splinter import Browser
 
 url = 'https://projudi.tjba.jus.br/projudi/interno.jsp?endereco=/projudi/buscas/ProcessosParte'
-url1 = 'https://projudi.tjba.jus.br/projudi/listagens/DadosProcesso?numeroProcesso=3220152991538'
+url1 = 'https://projudi.tjba.jus.br/projudi/listagens/DadosProcesso?numeroProcesso=1020141485168'
 
 b = Browser('chrome', headless=True)
 b.visit(url)
@@ -96,7 +94,26 @@ def get_partiespp():
             partiespp = partiespp_[9:] 
             return partiespp
         else:
-            return ''
+            partes = soup.find(id = 'tabelaPartes16')
+        if partes != None:
+            partest= partes.get_text()
+            partiespp_ = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
+            partiespp = partiespp_[9:] 
+            return partiespp
+        else:
+             return ''
+
+def get_reu():
+    reu_ = soup.find(id = 'tabelaPartes67')
+    if reu_ != None:
+        reu_t= reu_.get_text()
+        reu_tt = reu_t.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
+        reu = reu_tt[9:] 
+        return reu
+    else:
+        return ''
 
 #Partes Polo Ativo
 def get_partiespa():
@@ -116,10 +133,18 @@ def get_partiespa():
             partiespa = partiespa_[9:]
             return partiespa
         else:
+            partespa = soup.find(id = 'tabelaPartes4')
+        if partespa != None:
+            partespa_ = partespa.get_text()
+            partiespa_ = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')   
+            partiespa = partiespa_[9:]
+            return partiespa
+        else:
             return ''
 
 
-print ('Polo Passivo:', get_partiespp(), '\n','Polo Ativo: ', get_partiespa(), '\n')
+print ('Polo Passivo:', get_partiespp(), get_reu(), '\n','Polo Ativo: ', get_partiespa(), '\n')
 
 #GET LAWYERS DATA:
 
@@ -138,7 +163,19 @@ def find_lawpp():
             advppc = advppc_[20:]
             return advppc
         else:
-            return ''
+            s_advppc = soup.find(id = 'tabelaAdvogadoPartes16')
+        if s_advppc != None:
+            advppc_ = s_advppc.get_text()
+            advppc = advppc_[20:]
+            return advppc
+        else:
+            s_advppc = soup.find(id = 'tabelaAdvogadoPartes67')
+        if s_advppc != None:
+            advppc_ = s_advppc.get_text()
+            advppc = advppc_[20:]
+            return advppc
+        else:
+            return''
 
 
 #ADVOGADOS POLO ATIVO:
@@ -156,6 +193,12 @@ def find_lawpa():
             advpac = advpac_[20:]
             return advpac
         else:
+            s_advpac = soup.find(id = 'tabelaAdvogadoPartes4')
+        if s_advpac != None:
+            advpac_ = s_advpac.get_text()
+            advpac = advpac_[20:]
+            return advpac
+        else:
             return ''
 
 
@@ -168,10 +211,11 @@ def get_followup():
     andamentos_ini = soupt.find('Arquivos/Observação')
     andamentos_fim = soupt.find('var ar = document.getElement')
     follow_ups = soupt[andamentos_ini:andamentos_fim]
-    follow_up = follow_ups.replace('\n\n', '').replace('Movimentação sem arquivos', '').replace('Arquivos/Observação', 'Andamentos:')
+    follow_up = follow_ups.replace('\n\n', '').replace('Movimentação sem arquivos', '').replace('Arquivos/Observação',
+     'Andamentos:')
     return follow_up
 
-print(get_followup())
+#print(get_followup())
 
 
 
