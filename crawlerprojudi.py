@@ -9,7 +9,7 @@ import urllib3
 from splinter import Browser
 
 url = 'https://projudi.tjba.jus.br/projudi/interno.jsp?endereco=/projudi/buscas/ProcessosParte'
-url1 = 'https://projudi.tjba.jus.br/projudi/listagens/DadosProcesso?numeroProcesso=1020141485168'
+url1 = 'https://projudi.tjba.jus.br/projudi/listagens/DadosProcesso?numeroProcesso=3220182103740'
 
 b = Browser('chrome', headless=True)
 b.visit(url)
@@ -50,6 +50,17 @@ def get_court():
     return juizo
 
 print(get_court())
+
+#GET LAWSUIT'S CLASS
+
+def get_class():
+    classe_in = soupt.find('Classe:')
+    classe_out = soupt.find('Segredo de Justiça')
+    classe_ = soupt[classe_in:classe_out]
+    classe = classe_.replace('\n', '').replace('Este processo possui 1 suspeita de prevenção', '')
+    return classe
+
+print(get_class())
 
 #GET LAWSUIT'S PHASE
 
@@ -143,8 +154,19 @@ def get_partiespa():
         else:
             return ''
 
+def get_autor():
+    autor_ = soup.find(id = 'tabelaPartes14')
+    if autor_ != None:
+        autor_t= autor_.get_text()
+        autor_tt = autor_t.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
+        autor = autor_tt[9:] 
+        return autor
+    else:
+        return ''
 
-print ('Polo Passivo:', get_partiespp(), get_reu(), '\n','Polo Ativo: ', get_partiespa(), '\n')
+
+print ('Polo Passivo:', get_partiespp(), get_reu(), '\n','Polo Ativo: ', get_partiespa(), get_autor())
 
 #GET LAWYERS DATA:
 
@@ -199,6 +221,12 @@ def find_lawpa():
             advpac = advpac_[20:]
             return advpac
         else:
+            s_advpac = soup.find(id = 'tabelaAdvogadoPartes14')
+        if s_advpac != None:
+            advpac_ = s_advpac.get_text()
+            advpac = advpac_[20:]
+            return advpac
+        else:
             return ''
 
 
@@ -215,7 +243,7 @@ def get_followup():
      'Andamentos:')
     return follow_up
 
-#print(get_followup())
+print(get_followup())
 
 
 

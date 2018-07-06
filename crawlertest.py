@@ -10,7 +10,7 @@ import re
 import urllib3
 
 
-r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo20.html', encoding = "ISO-8859-1")
+r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo1.html', encoding = "ISO-8859-1")
 data = r.read()
 r.close()
 soup = BeautifulSoup(data, 'html.parser')
@@ -48,6 +48,17 @@ def get_court():
     return juizo
 
 print(get_court())
+
+#GET LAWSUIT'S CLASS
+
+def get_class():
+    classe_in = soupt.find('Classe:')
+    classe_out = soupt.find('Segredo de Justiça')
+    classe_ = soupt[classe_in:classe_out]
+    classe = classe_.replace('\n', '').replace('Este processo possui 1 suspeita de prevenção', '')
+    return classe
+
+print(get_class())
 
 #GET LAWSUIT'S PHASE
 
@@ -151,6 +162,12 @@ def find_lawpp():
             return advppc
         else:
             s_advppc = soup.find(id = 'tabelaAdvogadoPartes16')
+        if s_advppc != None:
+            advppc_ = s_advppc.get_text()
+            advppc = advppc_[20:]
+            return advppc
+        else:
+            s_advppc = soup.find(id = 'tabelaAdvogadoPartes67')
         if s_advppc != None:
             advppc_ = s_advppc.get_text()
             advppc = advppc_[20:]
