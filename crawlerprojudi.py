@@ -9,7 +9,7 @@ import urllib3
 from splinter import Browser
 import json
 
-proc = '3220182150626'
+proc = '1020182172477'
 
 url = 'https://projudi.tjba.jus.br/projudi/interno.jsp?endereco=/projudi/buscas/ProcessosParte'
 url1 = 'https://projudi.tjba.jus.br/projudi/listagens/DadosProcesso?numeroProcesso='+proc
@@ -30,7 +30,7 @@ def get_id():
     law_id = numproc [14:39]
     return law_id
 
-print(get_id())
+#print(get_id())
 
 
 #FIND JUDGE
@@ -42,7 +42,7 @@ def find_judge():
     judge = judge_.replace('Juiz: ', '')
     return judge
 
-print(find_judge())
+#print(find_judge())
 
 #GET COURT
 
@@ -53,7 +53,7 @@ def get_court():
     court = juizo_.replace('\n', '').replace('Juízo:', '')
     return court
 
-print(get_court())
+#print(get_court())
 
 #GET LAWSUIT'S CLASS
 
@@ -65,7 +65,7 @@ def get_class():
     '').replace('Classe:', '')
     return classe
 
-print(get_class())
+#print(get_class())
 
 #GET LAWSUIT'S PHASE
 
@@ -76,7 +76,7 @@ def get_phase():
     fase_proc = faset.replace ('\n', '').replace('      ', ' ').replace('Fase  Processual:', '')
     return fase_proc
     
-print(get_phase())
+#print(get_phase())
 
 
 #FIND LAWSUIT VALUE
@@ -88,7 +88,7 @@ def get_value():
     law_value = l_value.replace('\n', '').replace('Valor da Causa: ', '')
     return law_value
 
-print(get_value())
+#print(get_value())
 
 #GET PARTIES' NAMES:
 
@@ -179,7 +179,7 @@ def get_autor():
         return ''
 
 
-print ('Polo Passivo:', get_partiespp(), get_reu(), '\n','Polo Ativo: ', get_partiespa(), get_autor())
+#print ('Polo Passivo:', get_partiespp(), get_reu(), '\n','Polo Ativo: ', get_partiespa(), get_autor())
 
 #GET LAWYERS DATA:
 
@@ -192,7 +192,7 @@ def find_lawpp():
         advppl = advpp_[20:]
         advpp = advppl.replace(' ', '-').replace('\n', 
             '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-            '\n').replace('-', ' ').replace('   ', ' ')
+            '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
         return advpp
     else:
         s_advppc = soup.find(id = 'tabelaAdvogadoPartes0')
@@ -201,7 +201,7 @@ def find_lawpp():
             advppce = advppc_[20:]
             advppc = advppce.replace(' ', '-').replace('\n', 
             '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-            '\n').replace('-', ' ').replace('   ', ' ')
+            '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
             return advppc
         else:
             s_advppc = soup.find(id = 'tabelaAdvogadoPartes16')
@@ -210,7 +210,7 @@ def find_lawpp():
             advppce = advppc_[20:]
             advppc = advppce.replace(' ', '-').replace('\n', 
             '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-            '\n').replace('-', ' ').replace('   ', ' ')
+            '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
 
             return advppc
         else:
@@ -220,7 +220,7 @@ def find_lawpp():
             advppce = advppc_[20:]
             advppc = advppce.replace(' ', '-').replace('\n', 
             '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-            '\n').replace('-', ' ').replace('   ', ' ')
+            '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
 
             return advppc
         else:
@@ -236,7 +236,7 @@ def find_lawpa():
         advpae = advpa_[20:]
         advpa = advpae.replace(' ', '-').replace('\n', 
             '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-            '\n').replace('-', ' ').replace('   ', ' ')
+            '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
         return advpa
     else:
         s_advpac = soup.find(id = 'tabelaAdvogadoPartes1')
@@ -245,7 +245,7 @@ def find_lawpa():
             advpace = advpac_[20:]
             advpac = advpace.replace(' ', '-').replace('\n', 
             '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-            '\n').replace('-', ' ').replace('   ', ' ')
+            '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
             return advpac
         else:
             s_advpac = soup.find(id = 'tabelaAdvogadoPartes4')
@@ -254,7 +254,7 @@ def find_lawpa():
             advpace = advpac_[20:]
             advpac = advpace.replace(' ', '-').replace('\n', 
             '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-            '\n').replace('-', ' ').replace('   ', ' ')
+            '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
             return advpac
         else:
             s_advpac = soup.find(id = 'tabelaAdvogadoPartes14')
@@ -263,13 +263,13 @@ def find_lawpa():
             advpace = advpac_[20:]
             advpac = advpace.replace(' ', '-').replace('\n', 
             '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-            '\n').replace('-', ' ').replace('   ', ' ')
+            '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
             return advpac
         else:
             return ''
 
 
-print('Advogados Polo Ativo:', find_lawpa(), '\n Advogados Polo Passivo:',find_lawpp())
+#print('Advogados Polo Ativo:', find_lawpa(), '\n Advogados Polo Passivo:',find_lawpp())
 
 
 #GET FOLLOWUP (Needs cleaning):
@@ -282,7 +282,9 @@ def get_followup():
      'Andamentos:')
     return follow_up
 
-print(get_followup())
+#print(get_followup())
+
+print('Done')
 
 #STORE LAWSUIT DATA
 
