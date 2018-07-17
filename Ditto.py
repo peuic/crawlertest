@@ -3,8 +3,9 @@ import re
 import urllib3
 from splinter import Browser
 import json
+from urllib.parse import urlencode, urlparse
 
-r = open('/Users/peuic/Documents/Projetos/crawlertest/ProcessosParte2.html', encoding='ISO-8859-1')
+r = open('/Users/peuic/Documents/Projetos/crawlertest/ProcessosParte4.html', encoding='ISO-8859-1')
 data = r.read()
 r.close()
 sup = BeautifulSoup (data, 'html.parser')
@@ -20,22 +21,26 @@ for link in linklist:
 for link in ids_links:
     law_ids.append(link[48:])
 
-hostname_and_port = 'http://35.198.15.121:3128/'
-
-proxy = {
-    "proxyType": "manual",
-    "httpProxy": hostname_and_port,
-    "sslProxy": hostname_and_port,
-    }
+#def _get_capabilities():
+#        proxy = {'http':'//35.198.15.121:3128/'}
+#        url = urlparse(proxy.get("http", ""))
+#        hostname_and_port = "{}:{}".format(url.hostname, url.port)
+#        return {
+#            "proxy": {
+#                "proxyType": "manual",
+#                "httpProxy": hostname_and_port,
+#                "sslProxy": hostname_and_port,
+#            }
+#        }
     
 
-capabilities = proxy
+#capabilities = _get_capabilities()
 
 for idd in law_ids:
     url0 = 'https://projudi.tjba.jus.br/projudi/interno.jsp?endereco=/projudi/buscas/ProcessosParte'
     url1 = 'https://projudi.tjba.jus.br/projudi/listagens/DadosProcesso?numeroProcesso='+idd
 
-    b = Browser('chrome', headless=True, desired_capabilities=capabilities)
+    b = Browser('chrome', headless=True)
     b.visit(url0)
     b.visit(url1)
     data = b.html
@@ -51,7 +56,7 @@ for idd in law_ids:
         law_id = numproc [14:39]
         return law_id
 
-    #print(get_id())
+    
 
 
     #FIND JUDGE
@@ -63,7 +68,7 @@ for idd in law_ids:
         judge = judge_.replace('Juiz: ', '')
         return judge
 
-    #print(find_judge())
+   
 
     #GET COURT
 
@@ -74,7 +79,14 @@ for idd in law_ids:
         court = juizo_.replace('\n', '').replace('Juízo:', '')
         return court
 
-    #print(get_court())
+    #DATA DE DISTRIBUIÇAO
+
+    def get_date():    
+        data_in = soupt.find('Data de Distribuição')
+        data_out = soupt.find(' às ')
+        data_ = soupt[data_in:data_out]
+        date = data_.replace('Data de Distribuição\n ', '')
+        return date
 
     #GET LAWSUIT'S CLASS
 
@@ -86,7 +98,14 @@ for idd in law_ids:
         '').replace('Classe:', '')
         return classe
 
-    #print(get_class())
+    #GET SUBJECT
+
+    def get_subject():
+        subject_in = soupt.find('Assunto:')
+        subject_out = soupt.find('Complementares:')
+        subject_full = soupt[subject_in:subject_out]
+        subject = subject_full.replace('\n','').replace('Assunto:','')
+        return subject
 
     #GET LAWSUIT'S PHASE
 
@@ -97,8 +116,7 @@ for idd in law_ids:
         fase_proc = faset.replace ('\n', '').replace('      ', ' ').replace('Fase  Processual:', '')
         return fase_proc
         
-    #print(get_phase())
-
+    
 
     #FIND LAWSUIT VALUE
 
@@ -109,7 +127,14 @@ for idd in law_ids:
         law_value = l_value.replace('\n', '').replace('Valor da Causa: ', '')
         return law_value
 
-    #print(get_value())
+    #GET LAST EVENT
+    
+    def get_last_event():
+        last_event_in = soupt.find('Último Evento')
+        last_event_out = soupt.find('Cartório Extrajudicial:')
+        last_event_full = soupt[last_event_in:last_event_out]
+        last_event = last_event_.replace('\n', '').replace('Último Evento', '')
+        return last_event
 
     #GET PARTIES' NAMES:
 
@@ -200,7 +225,7 @@ for idd in law_ids:
             return ''
 
 
-    #print ('Polo Passivo:', get_partiespp(), get_reu(), '\n','Polo Ativo: ', get_partiespa(), get_autor())
+    
 
     #GET LAWYERS DATA:
 
@@ -290,10 +315,7 @@ for idd in law_ids:
                 return ''
 
 
-    #print('Advogados Polo Ativo:', find_lawpa(), '\n Advogados Polo Passivo:',find_lawpp())
-
-
-    #GET FOLLOWUP (Needs cleaning):
+    #GET FOLLOWUP :
 
     def get_followup():
         andamentos_in = soupt.find('Arquivos/Observação')
@@ -303,8 +325,7 @@ for idd in law_ids:
         'Andamentos:')
         return follow_up
 
-    #print(get_followup())
-
+    
     print('Done')
 
     #STORE LAWSUIT DATA
@@ -313,9 +334,11 @@ for idd in law_ids:
         'id': get_id(), 
         'judge': find_judge(), 
         'court': get_court(), 
+        'date': get_date(),
         'class': get_class(), 
         'phase': get_phase(), 
         'value': get_value(),
+        'last event': get_last_event(),
         'active party':[ 
             get_partiespa(),
             get_autor()
@@ -328,8 +351,6 @@ for idd in law_ids:
         'lawyer passive': find_lawpp(),
         'follow up': get_followup()
         }
-
-
 
     with open(get_id()+'.json', 'w') as outfile:
         json.dump(lawsuit, outfile, ensure_ascii=False, indent=4)

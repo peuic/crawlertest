@@ -25,7 +25,7 @@ def get_id():
     proc_id = numproc [14:40]
     return proc_id
 
-print(get_id())
+#print(get_id())
 
 
 #FIND JUDGE
@@ -36,7 +36,7 @@ def find_judge():
     judge = soupt[judges_in:judges_lim] 
     return judge
 
-print(find_judge())
+#print(find_judge())
 
 #GET COURT
 
@@ -47,7 +47,7 @@ def get_court():
     juizo = juizo_.replace('\n', '')
     return juizo
 
-print(get_court())
+#print(get_court())
 
 #GET LAWSUIT'S CLASS
 
@@ -58,7 +58,7 @@ def get_class():
     classe = classe_.replace('\n', '').replace('Este processo possui 1 suspeita de prevenção', '')
     return classe
 
-print(get_class())
+#print(get_class())
 
 #GET LAWSUIT'S PHASE
 
@@ -69,7 +69,7 @@ def get_phase():
     fase_proc = faset.replace ('\n', '').replace('      ', ' ')
     return fase_proc
     
-print(get_phase())
+#print(get_phase())
 
 
 #FIND LAWSUIT VALUE
@@ -81,7 +81,7 @@ def get_value():
     law_value = l_value.replace('\n', '')
     return law_value
 
-print(get_value())
+#print(get_value())
 
 #GET PARTIES' NAMES:
 
@@ -142,7 +142,7 @@ def get_partiespa():
             return ''
 
 
-print ('Polo Passivo:', get_partiespp(), '\n','Polo Ativo: ', get_partiespa(), '\n')
+#print ('Polo Passivo:', get_partiespp(), '\n','Polo Ativo: ', get_partiespa(), '\n')
 
 #GET LAWYERS DATA:
 
@@ -200,7 +200,7 @@ def find_lawpa():
             return ''
 
 
-print('Advogados Polo Ativo:', find_lawpa(), '\n Advogados Polo Passivo:',find_lawpp())
+#print('Advogados Polo Ativo:', find_lawpa(), '\n Advogados Polo Passivo:',find_lawpp())
 
 
 #GET FOLLOWUP (Needs cleaning):
@@ -214,5 +214,20 @@ def get_followup():
 
 #print(get_followup())
 
+#GET SUBJECT
 
+def get_subject():
+    subject_in = soupt.find('Assunto:')
+    subject_out = soupt.find('Complementares:')
+    subject_full = soupt[subject_in:subject_out]
+    subject = subject_full.replace('\n','').replace('Assunto:','')
+    return subject
 
+#DATA DE DISTRIBUIÇAO
+
+    def get_date():    
+        data_in = soupt.find('Data de Distribuição')
+        data_out = soupt.find(' às ')
+        data_ = soupt[data_in:data_out]
+        date = data_.replace('Data de Distribuição\n ', '')
+        return date    

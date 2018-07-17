@@ -1,0 +1,766 @@
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    function DoPrinting(){
+        if (!window.print){
+            alert("Use o Netscape  ou Internet Explorer \n nas versões 4.0 ou superior!")
+            return
+        }
+        window.print()
+    }
+
+    ok=false;
+
+    function CheckAll() {
+        if(!ok){
+            for (var i=0;i<document.formProcessos.elements.length;i++) {
+                var x = document.formProcessos.elements[i];
+                if (x.name == 'processos') {
+                    x.checked = true;
+                    ok=true;
+                }
+            }
+        }
+        else{
+            for (var i=0;i<document.formProcessos.elements.length;i++) {
+                var x = document.formProcessos.elements[i];
+                if (x.name == 'processos') {
+                    x.checked = false;
+                    ok=false;
+                }
+            }
+        }
+    }
+        
+</script>
+
+
+
+<script type="text/javascript">
+    
+        
+</script>
+
+
+<link href="/projudi/estilo.css" rel="stylesheet" type="text/css">
+<div align="center">
+    <p class="tituloPagina">Processos Obtidos Por Busca</p>
+    
+    <!--Critérios Informados-->
+    
+
+
+
+
+
+
+
+
+    <link href="/projudi/estilo.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        .tbCriterios td{
+            padding-left:10px;
+            padding-top:2px;
+            padding-bottom:3px;
+        }
+        /*- Menu Tabs--------------------------- */
+        #tabs {
+            float:left;
+            font-size:93%;
+            line-height:normal;
+        }
+        #tabs ul {
+            margin:0;
+            padding:3px 10px 0 0px;
+            list-style:none;
+            width:100%;
+        }
+        #tabs li {
+            display:inline;
+            margin:0;
+            padding:0;
+        }
+        #tabs a {
+            float:left;
+            background:url("/projudi/imagens/tabs/tableft.gif") no-repeat left top;
+            margin:0;
+            padding:0 0 0 4px;
+            text-decoration:none;
+            cursor:pointer;
+        }
+        #tabs a span {
+            float:left;
+            display:block;
+            background:url("/projudi/imagens/tabs/tabright.gif") no-repeat right top;
+            padding:5px 15px 4px 6px;
+            color:#FFFFFF;
+        }
+        #tabs a.selecionado {
+            float:left;
+            background:url("/projudi/imagens/tabs/tableft_selected.gif") no-repeat left top;
+            margin:0;
+            padding:0 0 0 4px;
+            text-decoration:none;
+            cursor:pointer;
+        }
+        #tabs a.selecionado span {
+            float:left;
+            display:block;
+            background:url("/projudi/imagens/tabs/tabright_selected.gif") no-repeat right top;
+            padding:5px 15px 4px 6px;
+            color:#666;
+        }
+        /* Commented Backslash Hack hides rule from IE5-Mac \*/
+        #tabs a span {float:none;}
+        /* End IE5-Mac hack */
+        #tabs a:hover span {
+            color:#990000;
+        }
+        #tabs a:hover {
+            background-position:0% -42px;
+        }
+        #tabs a:hover span {
+            background-position:100% -42px;
+        }
+        /*- Menu Tabs B--------------------------- */
+     </style>
+
+
+     <!--Critérios Informados-->
+    <table id="tbCriteriosBuscaProcessos" class="tbCriterios"  cellpadding="0" cellspacing="0" width="99%">
+        <tr class="primeiraLinha">
+            <td colspan="2" style="padding-top:5px;padding-bottom:5px;">Critérios Informados</td>
+        </tr>
+        
+            <tr>
+                <td style="width:1%;" nowrap><b>Status do Processo</b>:</td>
+                <td>ATIVO</td>
+            </tr>
+        
+            <tr>
+                <td style="width:1%;" nowrap><b>Segredo de Justiça</b>:</td>
+                <td>NÃO</td>
+            </tr>
+        
+        <tr class="ultimaLinha">
+            <td colspan="2" style="padding-top:5px;padding-bottom:5px;"><a href="/projudi/buscas/ProcessosParte">Nova busca</a> </td>
+        </tr>
+    </table>
+    <!-- Fim - Critérios Informados-->
+    
+    <!-- Fim - Critérios Informados-->
+    <form name="formEnvia" id="formEnvia" method="post" >
+        <input name="nome" id="nome" type="hidden" value="">
+        <input name="cpfCnpj" id="cpfCnpj" type="hidden" value="">
+        <input name="sentencaInteira" id="sentencaInteira" type="hidden" value="">
+        
+        <input name="tipoParteProcesso" id="tipoParteProcesso" type="hidden" value="-1">
+        <input name="codVara" id="codVara" type="hidden" value="-1">
+        <input name="numeroProcesso" id="numeroProcesso" type="hidden" value="">
+        <input name="codObjetoPedido" id="codObjetoPedido" type="hidden" value="-1">
+        <input name="codFaseProcessual" id="codFaseProcessual" type="hidden" value="-1">
+        <input name="tipoAcao" id="tipoAcao" type="hidden" value="-1">
+        <input name="codPrioridadeProcessual" id="codPrioridadeProcessual" type="hidden" value="-1">
+        <input name="codStatusProcesso" id="codStatusProcesso" type="hidden" value="-1">
+        <input name="codNatureza" id="codNatureza" type="hidden" value="-1">
+        <input name="segredo" id="segredo" type="hidden" value="">
+        <input name="vinculado" id="vinculado" type="hidden" value="">
+        <input name="codTipoLocalizador" id="codTipoLocalizador" type="hidden" value="">
+        <input name="codSituacao" id="codSituacao" type="hidden" value="-1">
+        <input name="dataInicio" id="dataInicio" type="hidden" value="">
+        <input name="dataFim" id="dataFim" type="hidden" value="">
+        <input name="loginJuiz" id="loginJuiz" type="hidden" value="">
+        <input name="codCartorioExtrajudicial" id="codCartorioExtrajudicial" type="hidden" value="">
+        <input name="codNucleoMP" id="codNucleoMP" type="hidden" value="">
+        <input name="seqCategoriaClasse" id="seqCategoriaClasse" type="hidden" value="">
+        <input name="pesquisaRecursivaClasse" id="pesquisaRecursivaClasse" type="hidden" value="">
+        <input name="seqCategoriaAssunto" id="seqCategoriaAssunto" type="hidden" value="">
+        <input name="pesquisaRecursivaAssunto" id="pesquisaRecursivaAssunto" type="hidden" value="">
+        <input name="dataFato" id="dataFato" type="hidden" value="">
+        <input name="delegaciaOrigem" id="delegaciaOrigem" type="hidden" value="-1">
+        <input name="numeroProcessoTCO" id="numeroProcessoTCO" type="hidden" value="">
+        <input name="dataTCO" id="dataTCO" type="hidden" value="">
+        <input name="codTipoRegistroOcorrencia" id="codTipoRegistroOcorrencia" type="hidden" value="-1">
+        <input name="tipoRegistroOutros" id="tipoRegistroOutros" type="hidden" value="">
+        <input name="numeroRegistro" id="numeroRegistro" type="hidden" value="">
+        <input name="oab" id="oab" type="hidden" value="">
+        <input name="complementoOAB" id="complmentoOAB" type="hidden" value="">
+        <input name="estadoOAB" id="estadoOAB" type="hidden" value="">
+     	<input name="migradoSaipro" id="migradoSaipro" type="hidden" value="">
+
+        
+
+    </form>
+
+    <table width="99%" border="0" cellspacing="0" cellpadding="0">
+<tr align="right">
+<td>
+447654  resultados encontrados - página 1 de 31976</td>
+</tr><tr align="right">
+<td>
+<table border="0" cellspacing="1" cellpadding="1">
+ <tr>
+<td width="25" align="center" bgcolor="#DEDEDE"><img src="/projudi/imagens/seta2_esquerda_off.gif" border="0"/></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><img src="/projudi/imagens/seta_esquerda_off.gif" border="0"/></td>
+<td width="25" align="center" class="tabact:active"><b>1</b></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(2)">2</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(3)">3</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(4)">4</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(5)">5</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(6)">6</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(7)">7</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(8)">8</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(9)">9</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE" class="footerlink"><a class="logtext" href="javascript:goToPage(2)" alt="próxima" title="próxima página"><img src="/projudi/imagens/seta_direita.gif" border="0"/></a></td>
+<td width="25" align="center" bgcolor="#DEDEDE" class="footerlink"><a class="logtext" href="javascript:goToPage(31976)" alt="última" title="última página"><img src="/projudi/imagens/seta2_direita.gif" border="0"/></a></td>
+</tr>
+</table>
+<script type="text/javascript" language="JavaScript">
+// Select the pageNumber field
+function select1() {
+  var pageNumber = document.getElementById('pageNumber1');
+  pageNumber.focus();
+  pageNumber.select();
+}
+
+// Function to adjust the page number (starts with 0)
+// a função recebe o parâmetro verificaSubmit para, caso seja chamada do onSubmit do form
+// retornar false e não submeter a página;
+// se for chamada do link do botão não retorna false e executa a função;
+function adjustPage1(total, verificaSubmit) {
+  var form = document.getElementById('pager1');
+  var infoForm = document.getElementById('formEnvia'); 
+  var page = parseInt(form.pageNumber1.value);
+  if (!form.pageNumber1.value) {
+    alert ("É preciso informar o número da página");
+    select1();
+  } else if (!page) {
+    alert ("O formato do número da página está incorreto");
+    select1();
+  } else if (page < 1 || page > total) {
+    alert ("O número da página está fora dos limites");
+    select1();
+  } else {
+    infoForm.pagina.value = page;
+    infoForm.submit();
+  } if (verificaSubmit == 'noLink') { return false;}
+}</script>
+<table border="0" cellspacing="0" cellpadding="3" width="100%" bgcolor="#e7e7e7" summary="">
+  <form name="pager1" id="pager1" onSubmit=" return adjustPage1(31976,'noLink');" action="teste1.jsp" method="post" >
+    <tr align="right">
+       <td width="100%">ir para a página:</td>
+       <td align="right"><input type="text" name="pageNumber1" id="pageNumber1" size="5"></td>
+       <td align="left"><a href="javascript:adjustPage1(31976,'linkSubmit')">ir</a></td>
+    </tr>  </form>
+</table></td>
+</tr>
+</table>
+
+
+        <form action="/projudi/acoes/AdicionaAdvogadoOuProcurador" name="formProcessos" id="formProcessos" method="post">            
+
+            <table width="99%" border="0" cellpadding="0" cellspacing="0" bordercolor="#666666">
+                <tr class="primeiraLinha">
+                    <td colspan="7">
+                        <strong>
+                            &nbsp;
+                        </strong>
+                    </td>
+                </tr>
+
+                <tr class="subTituloTabela">
+                    <td colspan="7" align="right" class="primeiraLinha">
+                        
+                        
+                    </td>
+                </tr>
+                <tr class="subTituloTabela">
+                    <td>
+                        
+                    </td>
+                    <td><a class="asc" href="javascript:ordenarLista('Processo.NUMEROPROCESSO','DESC')" title="Clique para ordenar descendente">N&ordm; do processo&nbsp;&nbsp;&nbsp;&nbsp;</a>
+</td>
+                    <td>Promovente(s)</td>
+                    <td>Promovido(s)</td>
+                    <td nowrap><a class="" href="javascript:ordenarLista('Processo.DATARECEBIMENTO','ASC')" title="Clique para ordenar ascendente">Distribui&ccedil;&atilde;o</a>
+</td>
+                    <td><div align="center">Classe</div></td>
+                    
+                </tr>
+                
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td class="tBranca">
+                        <a href="/projudi/listagens/DadosProcesso?numeroProcesso=1020100585123" class="style2">0011949-42.2010.8.05.0103</a><br>THEA CRISTINA MUNIZ CUNHA SANTOS
+                    </td>
+                    <td class="tBranca">
+                        <lu>
+                            <li>MARIA DA GLORIA NERI LACERDA (Exeqüente)</li>
+                        </lu>
+                    </td>
+                    <td class="tBranca">
+                        <lu>
+                            <li>SULAMERICA  SEGURO SAUDE S/A (Executado)</li>
+                        </lu>
+                    </td>
+                    <td class="tBranca">
+                        <div align="center">26/08/10</div>
+                    </td>
+                    <td class="tBranca">Cumprimento de sentença</td>
+                    <td class="tBranca">
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td class="tCinza">
+                        <a href="/projudi/listagens/DadosProcesso?numeroProcesso=1020100671725" class="style2">0012148-64.2010.8.05.0103</a><br>BENEDITO ALVES COELHO
+                    </td>
+                    <td class="tCinza">
+                        <lu>
+                            <li>MARIA DE SAO PEDRO PIRES DA SILVA (Promovente)</li>
+                        </lu>
+                    </td>
+                    <td class="tCinza">
+                        <lu>
+                            <li>BANCO DO BRASIL SA (Promovido)</li><li>COMPANHIA DE SEGUROS ALIANCA (Promovido)</li>
+                        </lu>
+                    </td>
+                    <td class="tCinza">
+                        <div align="center">23/09/10</div>
+                    </td>
+                    <td class="tCinza">Procedimento do Juizado Especial Cível</td>
+                    <td class="tCinza">
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td class="tBranca">
+                        <a href="/projudi/listagens/DadosProcesso?numeroProcesso=1020100708014" class="style2">0012231-80.2010.8.05.0103</a><br>THEA CRISTINA MUNIZ CUNHA SANTOS
+                    </td>
+                    <td class="tBranca">
+                        <lu>
+                            <li>ESPOLIO DE CARLOS MAGNO DE MAGALHAES FILHO (Exeqüente)</li><li>GUSTAVO MAGNO SOUZA DE MAGALHAES (Exeqüente)</li>
+                        </lu>
+                    </td>
+                    <td class="tBranca">
+                        <lu>
+                            <li>LG ELETRONICS (Executado)</li><li>LOJAS AMERICANAS (Executado)</li><li>STARCELL (Executado)</li>
+                        </lu>
+                    </td>
+                    <td class="tBranca">
+                        <div align="center">05/10/10</div>
+                    </td>
+                    <td class="tBranca">Cumprimento de sentença</td>
+                    <td class="tBranca">
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td class="tCinza">
+                        <a href="/projudi/listagens/DadosProcesso?numeroProcesso=1020100712727" class="style2">0012239-57.2010.8.05.0103</a><br>THEA CRISTINA MUNIZ CUNHA SANTOS
+                    </td>
+                    <td class="tCinza">
+                        <lu>
+                            <li>LALUZ ILUMINACAO LTDA (Exeqüente)</li>
+                        </lu>
+                    </td>
+                    <td class="tCinza">
+                        <lu>
+                            <li>AS FRANCO PRODUCOES E SERVICO (Executado)</li>
+                        </lu>
+                    </td>
+                    <td class="tCinza">
+                        <div align="center">06/10/10</div>
+                    </td>
+                    <td class="tCinza">Cumprimento de sentença</td>
+                    <td class="tCinza">
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td class="tBranca">
+                        <a href="/projudi/listagens/DadosProcesso?numeroProcesso=1020100803955" class="style2">0012438-79.2010.8.05.0103</a><br>THEA CRISTINA MUNIZ CUNHA SANTOS
+                    </td>
+                    <td class="tBranca">
+                        <lu>
+                            <li>EDINALVA OLIVEIRA DE SOUZA (Exeqüente)</li><li>RUDI JEAN MARIE CAMMAERT (Exeqüente)</li>
+                        </lu>
+                    </td>
+                    <td class="tBranca">
+                        <lu>
+                            <li>NAMBA S BRASIL MOVELARIA (Executado)</li>
+                        </lu>
+                    </td>
+                    <td class="tBranca">
+                        <div align="center">08/11/10</div>
+                    </td>
+                    <td class="tBranca">Cumprimento de sentença</td>
+                    <td class="tBranca">
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td class="tCinza">
+                        <a href="/projudi/listagens/DadosProcesso?numeroProcesso=1020100898740" class="style2">0012768-76.2010.8.05.0103</a><br>THEA CRISTINA MUNIZ CUNHA SANTOS
+                    </td>
+                    <td class="tCinza">
+                        <lu>
+                            <li>CRISTINA SANJUAN PORTELA SA BARRETO (Exeqüente)</li>
+                        </lu>
+                    </td>
+                    <td class="tCinza">
+                        <lu>
+                            <li>DERALDO CAMPOS DE SOUZA FILHO (Executado)</li><li>LECE - TRANSPORTES DE CARGAS LTDA (Executado)</li><li>MARIA CELESTE LOPES SOUZA (Executado)</li>
+                        </lu>
+                    </td>
+                    <td class="tCinza">
+                        <div align="center">06/12/10</div>
+                    </td>
+                    <td class="tCinza">Cumprimento de sentença</td>
+                    <td class="tCinza">
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td class="tBranca">
+                        <a href="/projudi/listagens/DadosProcesso?numeroProcesso=1020100919157" class="style2">0012841-48.2010.8.05.0103</a><br>THEA CRISTINA MUNIZ CUNHA SANTOS
+                    </td>
+                    <td class="tBranca">
+                        <lu>
+                            <li>MOISES OLIVEIRA DE CARVALHO (Exeqüente)</li>
+                        </lu>
+                    </td>
+                    <td class="tBranca">
+                        <lu>
+                            <li>GUY VALERIO BARROS DOS SANTOS (Executado)</li>
+                        </lu>
+                    </td>
+                    <td class="tBranca">
+                        <div align="center">13/12/10</div>
+                    </td>
+                    <td class="tBranca">Cumprimento de sentença</td>
+                    <td class="tBranca">
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td class="tCinza">
+                        <a href="/projudi/listagens/DadosProcesso?numeroProcesso=1020110058749" class="style2">0008600-94.2011.8.05.0103</a><br>THEA CRISTINA MUNIZ CUNHA SANTOS
+                    </td>
+                    <td class="tCinza">
+                        <lu>
+                            <li>ARMARINHO NIVAN LTDA (Exeqüente)</li>
+                        </lu>
+                    </td>
+                    <td class="tCinza">
+                        <lu>
+                            <li>BANCO DO  BRASIL - IRECE (Executado)</li><li>MILENE PEREIRA RIBEIRO PLASTICOS ME (Executado)</li>
+                        </lu>
+                    </td>
+                    <td class="tCinza">
+                        <div align="center">21/01/11</div>
+                    </td>
+                    <td class="tCinza">Cumprimento de sentença</td>
+                    <td class="tCinza">
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td class="tBranca">
+                        <a href="/projudi/listagens/DadosProcesso?numeroProcesso=1020110070868" class="style2">0008636-39.2011.8.05.0103</a><br>THEA CRISTINA MUNIZ CUNHA SANTOS
+                    </td>
+                    <td class="tBranca">
+                        <lu>
+                            <li>MARIA DINALVA DOS SANTOS (Promovente)</li>
+                        </lu>
+                    </td>
+                    <td class="tBranca">
+                        <lu>
+                            <li>RAYMUNDO PACHECO SA BARRETO NETO (Promovido)</li>
+                        </lu>
+                    </td>
+                    <td class="tBranca">
+                        <div align="center">25/01/11</div>
+                    </td>
+                    <td class="tBranca">Procedimento do Juizado Especial Cível</td>
+                    <td class="tBranca">
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td class="tCinza">
+                        <a href="/projudi/listagens/DadosProcesso?numeroProcesso=1020110078564" class="style2">0008682-28.2011.8.05.0103</a><br>THEA CRISTINA MUNIZ CUNHA SANTOS
+                    </td>
+                    <td class="tCinza">
+                        <lu>
+                            <li>JANAINA LUANDA DOS SANTOS SILVA (Exeqüente)</li>
+                        </lu>
+                    </td>
+                    <td class="tCinza">
+                        <lu>
+                            <li>HONDA (Executado)</li><li>TRILHA SUL MOTOS COMERCIO DE VEICULOS LTDA (Executado)</li>
+                        </lu>
+                    </td>
+                    <td class="tCinza">
+                        <div align="center">26/01/11</div>
+                    </td>
+                    <td class="tCinza">Cumprimento de sentença</td>
+                    <td class="tCinza">
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td class="tBranca">
+                        <a href="/projudi/listagens/DadosProcesso?numeroProcesso=1020110084034" class="style2">0008700-49.2011.8.05.0103</a><br>THEA CRISTINA MUNIZ CUNHA SANTOS
+                    </td>
+                    <td class="tBranca">
+                        <lu>
+                            <li>ILSA GALINI SANTANA (Exeqüente)</li>
+                        </lu>
+                    </td>
+                    <td class="tBranca">
+                        <lu>
+                            <li>COELBA COMPANHIA DE ELETRICIDADE DO ESTADO DA BAHIA COELBA (Executado)</li>
+                        </lu>
+                    </td>
+                    <td class="tBranca">
+                        <div align="center">27/01/11</div>
+                    </td>
+                    <td class="tBranca">Cumprimento de sentença</td>
+                    <td class="tBranca">
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td class="tCinza">
+                        <a href="/projudi/listagens/DadosProcesso?numeroProcesso=1020110118337" class="style2">0008821-77.2011.8.05.0103</a><br>RAQUEL RAMIRES FRANCOIS
+                    </td>
+                    <td class="tCinza">
+                        <lu>
+                            <li>MARIA CRISTINA SANTOS ESPINOLA PINTO (Promovente)</li>
+                        </lu>
+                    </td>
+                    <td class="tCinza">
+                        <lu>
+                            <li>BANCO DO BRASIL SA (Promovido)</li>
+                        </lu>
+                    </td>
+                    <td class="tCinza">
+                        <div align="center">03/02/11</div>
+                    </td>
+                    <td class="tCinza">Procedimento do Juizado Especial Cível</td>
+                    <td class="tCinza">
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td class="tBranca">
+                        <a href="/projudi/listagens/DadosProcesso?numeroProcesso=1020110119673" class="style2">0008835-61.2011.8.05.0103</a><br>THEA CRISTINA MUNIZ CUNHA SANTOS
+                    </td>
+                    <td class="tBranca">
+                        <lu>
+                            <li>WESLEI JOSE DOS SANTOS (Exeqüente)</li>
+                        </lu>
+                    </td>
+                    <td class="tBranca">
+                        <lu>
+                            <li>LOJAS INSINUANTE (Executado)</li><li>METALFRIO SOLUTIONS S/A (Executado)</li><li>UNIBANCO AIG SEGUROS S/A (Executado)</li>
+                        </lu>
+                    </td>
+                    <td class="tBranca">
+                        <div align="center">04/02/11</div>
+                    </td>
+                    <td class="tBranca">Cumprimento de sentença</td>
+                    <td class="tBranca">
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td class="tCinza">
+                        <a href="/projudi/listagens/DadosProcesso?numeroProcesso=1020110133401" class="style2">0008887-57.2011.8.05.0103</a><br>THEA CRISTINA MUNIZ CUNHA SANTOS
+                    </td>
+                    <td class="tCinza">
+                        <lu>
+                            <li>LEONARDO NUNES BARRETO (Exeqüente)</li>
+                        </lu>
+                    </td>
+                    <td class="tCinza">
+                        <lu>
+                            <li>CONSUL MULTIBRÁS (Executado)</li><li>SOCIEDADE COMERCIAL E IMPORTADORA HERMES S A (Executado)</li>
+                        </lu>
+                    </td>
+                    <td class="tCinza">
+                        <div align="center">08/02/11</div>
+                    </td>
+                    <td class="tCinza">Cumprimento de sentença</td>
+                    <td class="tCinza">
+                        
+                    </td>
+                </tr>
+                
+            </table>
+        </form>
+    <script type="text/javascript" language="JavaScript">
+function ordenarLista(coluna, ordem) {
+  var infoForm = document.getElementById('formEnvia'); 
+  infoForm.coluna.value = coluna;
+  infoForm.ordem.value = ordem;
+  infoForm.pagina.value = 1;
+  infoForm.submit(); 
+}
+function goToPage(page) {
+  var infoForm = document.getElementById('formEnvia'); 
+  infoForm.pagina.value = page;
+  infoForm.submit(); 
+}
+ // Cria os campos do paginador no formulario que sera submetido
+ var formInformado = document.getElementById('formEnvia');
+ var pag = document.createElement("input");
+ var col = document.createElement("input");
+ var ord = document.createElement("input");
+ pag.setAttribute("id", "pagina");
+ pag.setAttribute("type", "hidden");
+ pag.setAttribute("name", "pagina");
+ pag.setAttribute("value", "1");
+ col.setAttribute("id", "coluna");
+ col.setAttribute("type", "hidden");
+ col.setAttribute("name", "coluna");
+ col.setAttribute("value", "Processo.NUMEROPROCESSO");
+ ord.setAttribute("id", "ordem");
+ ord.setAttribute("type", "hidden");
+ ord.setAttribute("name", "ordem");
+ ord.setAttribute("value", "ASC");
+ formInformado.appendChild(pag);
+ formInformado.appendChild(col);
+ formInformado.appendChild(ord);
+</script>
+<table width="99%" border="0" cellspacing="0" cellpadding="0">
+<tr align="right">
+<td>
+447654  resultados encontrados - página 1 de 31976</td>
+</tr><tr align="right">
+<td>
+<table border="0" cellspacing="1" cellpadding="1">
+ <tr>
+<td width="25" align="center" bgcolor="#DEDEDE"><img src="/projudi/imagens/seta2_esquerda_off.gif" border="0"/></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><img src="/projudi/imagens/seta_esquerda_off.gif" border="0"/></td>
+<td width="25" align="center" class="tabact:active"><b>1</b></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(2)">2</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(3)">3</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(4)">4</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(5)">5</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(6)">6</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(7)">7</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(8)">8</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE"><a href="javascript:goToPage(9)">9</a></td>
+<td width="25" align="center" bgcolor="#DEDEDE" class="footerlink"><a class="logtext" href="javascript:goToPage(2)" alt="próxima" title="próxima página"><img src="/projudi/imagens/seta_direita.gif" border="0"/></a></td>
+<td width="25" align="center" bgcolor="#DEDEDE" class="footerlink"><a class="logtext" href="javascript:goToPage(31976)" alt="última" title="última página"><img src="/projudi/imagens/seta2_direita.gif" border="0"/></a></td>
+</tr>
+</table>
+<script type="text/javascript" language="JavaScript">
+// Select the pageNumber field
+function select2() {
+  var pageNumber = document.getElementById('pageNumber2');
+  pageNumber.focus();
+  pageNumber.select();
+}
+
+// Function to adjust the page number (starts with 0)
+// a função recebe o parâmetro verificaSubmit para, caso seja chamada do onSubmit do form
+// retornar false e não submeter a página;
+// se for chamada do link do botão não retorna false e executa a função;
+function adjustPage2(total, verificaSubmit) {
+  var form = document.getElementById('pager2');
+  var infoForm = document.getElementById('formEnvia'); 
+  var page = parseInt(form.pageNumber2.value);
+  if (!form.pageNumber2.value) {
+    alert ("É preciso informar o número da página");
+    select2();
+  } else if (!page) {
+    alert ("O formato do número da página está incorreto");
+    select2();
+  } else if (page < 1 || page > total) {
+    alert ("O número da página está fora dos limites");
+    select2();
+  } else {
+    infoForm.pagina.value = page;
+    infoForm.submit();
+  } if (verificaSubmit == 'noLink') { return false;}
+}</script>
+<table border="0" cellspacing="0" cellpadding="3" width="100%" bgcolor="#e7e7e7" summary="">
+  <form name="pager2" id="pager2" onSubmit=" return adjustPage2(31976,'noLink');" action="teste2.jsp" method="post" >
+    <tr align="right">
+       <td width="100%">ir para a página:</td>
+       <td align="right"><input type="text" name="pageNumber2" id="pageNumber2" size="5"></td>
+       <td align="left"><a href="javascript:adjustPage2(31976,'linkSubmit')">ir</a></td>
+    </tr>  </form>
+</table></td>
+</tr>
+</table>
+
+    <br/>
+    <div align="center"><img src="/projudi/imagens/botoes/bot-Imprimir.gif" OnClick="javascript:DoPrinting()"></div>
+</div>

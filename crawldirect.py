@@ -55,6 +55,15 @@ def get_court():
 
 #print(get_court())
 
+#DATA DE DISTRIBUIÇAO
+
+def get_date():    
+    data_in = soupt.find('Data de Distribuição')
+    data_out = soupt.find(' às ')
+    data_ = soupt[data_in:data_out]
+    date = data_.replace('Data de Distribuição\n ', '')
+    return date
+
 #GET LAWSUIT'S CLASS
 
 def get_class():
@@ -89,6 +98,13 @@ def get_value():
     return law_value
 
 #print(get_value())
+
+def get_last_event():
+    last_event_in = soupt.find('Último Evento')
+    last_event_out = soupt.find('Cartório Extrajudicial:')
+    last_event_full = soupt[last_event_in:last_event_out]
+    last_event = last_event_.replace('\n', '').replace('Último Evento', '')
+    return last_event
 
 #GET PARTIES' NAMES:
 
@@ -284,6 +300,9 @@ def get_followup():
 
 #print(get_followup())
 
+
+print(get_date())
+
 print('Done')
 
 #STORE LAWSUIT DATA
@@ -295,6 +314,8 @@ lawsuit = {
     'class': get_class(), 
     'phase': get_phase(), 
     'value': get_value(),
+    'date': get_date(), 
+    'last event': get_last_event(),
     'active party':[ 
         get_partiespa(),
         get_autor()
