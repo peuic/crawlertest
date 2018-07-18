@@ -10,7 +10,7 @@ import re
 import urllib3
 
 
-r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo2.html', encoding = "ISO-8859-1")
+r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo1.html', encoding = "ISO-8859-1")
 data = r.read()
 r.close()
 soup = BeautifulSoup(data, 'html.parser')
@@ -241,10 +241,9 @@ def get_situation():
     situation = situation_full.replace('\n', '')
     return situation
 
-
-
-lawyer_in = soupt.find('OAB/MADEP')
-lawyer_out = 4698
-lawyer_ = soupt[lawyer_in:lawyer_out]
-lawyer = lawyer_.replace('\n', '').replace('  ', '').replace('OAB/MADEP','').replace('			 ',' ')
-print(lawyer)
+partespa = soup.find(id = 'tabelaPartes30')
+partespa_ = partespa.get_text()
+partiespa_ = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+'').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '').replace('\t',
+' ').replace('                            ', ' ').replace('         ','')
+print(partiespa_)
