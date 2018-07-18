@@ -257,7 +257,7 @@ for idd in law_ids:
             if s_advppc != None:
                 advppc_ = s_advppc.get_text()
                 advppce = advppc_[20:]
-                advppc = advppce..replace('\n', '').replace('  ', '').replace('			 ',' ')
+                advppc = advppce.replace('\n', '').replace('  ', '').replace('			 ',' ')
 
                 return advppc
             else:
@@ -271,14 +271,14 @@ for idd in law_ids:
         if s_advpa != None:
             advpa_ = s_advpa.get_text()
             advpae = advpa_[20:]
-            advpa = advpae..replace('\n', '').replace('  ', '').replace('			 ',' ')
+            advpa = advpae.replace('\n', '').replace('  ', '').replace('			 ',' ')
             return advpa
         else:
             s_advpac = soup.find(id = 'tabelaAdvogadoPartes1')
             if s_advpac != None:
                 advpac_ = s_advpac.get_text()
                 advpace = advpac_[20:]
-                advpac = advpace..replace('\n', '').replace('  ', '').replace('			 ',' ')
+                advpac = advpace.replace('\n', '').replace('  ', '').replace('			 ',' ')
                 return advpac
             else:
                 s_advpac = soup.find(id = 'tabelaAdvogadoPartes4')
