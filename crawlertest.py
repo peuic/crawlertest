@@ -10,7 +10,7 @@ import re
 import urllib3
 
 
-r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo1.html', encoding = "ISO-8859-1")
+r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo2.html', encoding = "ISO-8859-1")
 data = r.read()
 r.close()
 soup = BeautifulSoup(data, 'html.parser')
@@ -231,3 +231,20 @@ def get_subject():
         data_ = soupt[data_in:data_out]
         date = data_.replace('Data de Distribuição\n ', '')
         return date    
+
+#GET LAWSUIT SITUATION
+
+def get_situation():
+    situation_in = soupt.find('Situação:')
+    situation_out = soupt.find('Data de Distribuição')
+    situation_full = soupt[situation_in:situation_out]
+    situation = situation_full.replace('\n', '')
+    return situation
+
+
+
+lawyer_in = soupt.find('OAB/MADEP')
+lawyer_out = 4698
+lawyer_ = soupt[lawyer_in:lawyer_out]
+lawyer = lawyer_.replace('\n', '').replace('  ', '').replace('OAB/MADEP','').replace('			 ',' ')
+print(lawyer)

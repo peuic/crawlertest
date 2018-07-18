@@ -5,7 +5,7 @@ from splinter import Browser
 import json
 from urllib.parse import urlencode, urlparse
 
-r = open('/Users/peuic/Documents/Projetos/crawlertest/ProcessosParte4.html', encoding='ISO-8859-1')
+r = open('/Users/peuic/Documents/Projetos/crawlertest/ProcessosParte5.html', encoding='ISO-8859-1')
 data = r.read()
 r.close()
 sup = BeautifulSoup (data, 'html.parser')
@@ -56,9 +56,6 @@ for idd in law_ids:
         law_id = numproc [14:39]
         return law_id
 
-    
-
-
     #FIND JUDGE
 
     def find_judge():
@@ -67,9 +64,7 @@ for idd in law_ids:
         judge_ = soupt[judges_in:judges_out] 
         judge = judge_.replace('Juiz: ', '')
         return judge
-
-   
-
+  
     #GET COURT
 
     def get_court():
@@ -116,8 +111,6 @@ for idd in law_ids:
         fase_proc = faset.replace ('\n', '').replace('      ', ' ').replace('Fase  Processual:', '')
         return fase_proc
         
-    
-
     #FIND LAWSUIT VALUE
 
     def get_value():
@@ -127,13 +120,22 @@ for idd in law_ids:
         law_value = l_value.replace('\n', '').replace('Valor da Causa: ', '')
         return law_value
 
+    #GET LAWSUIT SITUATION
+
+    def get_situation():
+        situation_in = soupt.find('Situação:')
+        situation_out = soupt.find('Data de Distribuição')
+        situation_full = soupt[situation_in:situation_out]
+        situation = situation_full.replace('\n', '').replace('Situação:', '')
+        return situation
+
     #GET LAST EVENT
     
     def get_last_event():
         last_event_in = soupt.find('Último Evento')
         last_event_out = soupt.find('Cartório Extrajudicial:')
         last_event_full = soupt[last_event_in:last_event_out]
-        last_event = last_event_.replace('\n', '').replace('Último Evento', '')
+        last_event = last_event_full.replace('\n', '').replace('Último Evento', '')
         return last_event
 
     #GET PARTIES' NAMES:
@@ -225,8 +227,6 @@ for idd in law_ids:
             return ''
 
 
-    
-
     #GET LAWYERS DATA:
 
     #ADVOGADOS POLO PASSIVO:
@@ -236,37 +236,28 @@ for idd in law_ids:
         if s_advpp != None:
             advpp_ = s_advpp.get_text()
             advppl = advpp_[20:]
-            advpp = advppl.replace(' ', '-').replace('\n', 
-                '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-                '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
+            advpp = advppl.replace('\n', '').replace('  ', '').replace('			 ',' ')
             return advpp
         else:
             s_advppc = soup.find(id = 'tabelaAdvogadoPartes0')
             if s_advppc != None:
                 advppc_ = s_advppc.get_text()
                 advppce = advppc_[20:]
-                advppc = advppce.replace(' ', '-').replace('\n', 
-                '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-                '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
+                advppc = advppce.replace('\n', '').replace('  ', '').replace('			 ',' ')
                 return advppc
             else:
                 s_advppc = soup.find(id = 'tabelaAdvogadoPartes16')
             if s_advppc != None:
                 advppc_ = s_advppc.get_text()
                 advppce = advppc_[20:]
-                advppc = advppce.replace(' ', '-').replace('\n', 
-                '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-                '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
-
+                advppc = advppce.replace('\n', '').replace('  ', '').replace('			 ',' ')
                 return advppc
             else:
                 s_advppc = soup.find(id = 'tabelaAdvogadoPartes67')
             if s_advppc != None:
                 advppc_ = s_advppc.get_text()
                 advppce = advppc_[20:]
-                advppc = advppce.replace(' ', '-').replace('\n', 
-                '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-                '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
+                advppc = advppce..replace('\n', '').replace('  ', '').replace('			 ',' ')
 
                 return advppc
             else:
@@ -280,36 +271,28 @@ for idd in law_ids:
         if s_advpa != None:
             advpa_ = s_advpa.get_text()
             advpae = advpa_[20:]
-            advpa = advpae.replace(' ', '-').replace('\n', 
-                '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-                '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
+            advpa = advpae..replace('\n', '').replace('  ', '').replace('			 ',' ')
             return advpa
         else:
             s_advpac = soup.find(id = 'tabelaAdvogadoPartes1')
             if s_advpac != None:
                 advpac_ = s_advpac.get_text()
                 advpace = advpac_[20:]
-                advpac = advpace.replace(' ', '-').replace('\n', 
-                '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-                '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
+                advpac = advpace..replace('\n', '').replace('  ', '').replace('			 ',' ')
                 return advpac
             else:
                 s_advpac = soup.find(id = 'tabelaAdvogadoPartes4')
             if s_advpac != None:
                 advpac_ = s_advpac.get_text()
                 advpace = advpac_[20:]
-                advpac = advpace.replace(' ', '-').replace('\n', 
-                '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-                '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
+                advpac = advpace.replace('\n', '').replace('  ', '').replace('			 ',' ')
                 return advpac
             else:
                 s_advpac = soup.find(id = 'tabelaAdvogadoPartes14')
             if s_advpac != None:
                 advpac_ = s_advpac.get_text()
                 advpace = advpac_[20:]
-                advpac = advpace.replace(' ', '-').replace('\n', 
-                '_').replace('_----------------------------	_----------------------------	_	---------------------------_',' - ').replace('__','').replace('_',
-                '\n').replace('-', ' ').replace('   ', ' ').replace('\n      \n', '')
+                advpac = advpace.replace('\n', '').replace('  ', '').replace('			 ',' ')
                 return advpac
             else:
                 return ''
@@ -336,7 +319,9 @@ for idd in law_ids:
         'court': get_court(), 
         'date': get_date(),
         'class': get_class(), 
-        'phase': get_phase(), 
+        'subject': get_subject(),
+        'phase': get_phase(),
+        'situation': get_situation(), 
         'value': get_value(),
         'last event': get_last_event(),
         'active party':[ 
