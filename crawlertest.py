@@ -17,12 +17,25 @@ soup = BeautifulSoup(data, 'html.parser')
 soupt = BeautifulSoup(data, 'html.parser').text
 
 
+
+
+def clean_text():
+        tabs_removed = soupt.replace("\t", "")
+        lines = tabs_removed.split("\n")
+        return "\n".join([line for line in lines if line.strip() != ""])
+
+def clean_tags(self, html=None):
+        tags_to_clean = ["script", "style", "select", "option"]
+        for tag in tags_to_clean:
+            [t.decompose() for t in html.find_all(tag)]
+        return html
+
 #GET LAWSUIT REGISTRATION NUMBER:
 
 def get_id():
     s_numproc = soup.find(class_ = 'primeiraLinha')
     numproc = s_numproc.get_text()
-    proc_id = numproc [14:40]
+    proc_id = numproc [14:39]
     return proc_id
 
 #print(get_id())
@@ -91,9 +104,9 @@ def get_partiespp():
     if partes != None:
         partest = partes.get_text()
         partiespp_ = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
-        partiespp = partiespp_[9:]
-        return partiespp
+        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '')
+        parties_pp = partiespp_[9:]
+        return parties_pp
     else:
         partes = soup.find(id = 'tabelaPartes0')
         if partes != None:
@@ -220,17 +233,17 @@ def get_subject():
     subject_in = soupt.find('Assunto:')
     subject_out = soupt.find('Complementares:')
     subject_full = soupt[subject_in:subject_out]
-    subject = subject_full.replace('\n','').replace('Assunto:','')
+    subject = subject_full.replace('\n','').replace('Assunto:','').replace('\xa0\xa0', '')
     return subject
 
 #DATA DE DISTRIBUIÇAO
 
-    def get_date():    
-        data_in = soupt.find('Data de Distribuição')
-        data_out = soupt.find(' às ')
-        data_ = soupt[data_in:data_out]
-        date = data_.replace('Data de Distribuição\n ', '')
-        return date    
+def get_date():    
+    data_in = soupt.find('Data de Distribuição')
+    data_out = soupt.find(' às ')
+    data_ = soupt[data_in:data_out]
+    date = data_.replace('Data de Distribuição\n ', '')
+    return date    
 
 #GET LAWSUIT SITUATION
 
@@ -241,9 +254,44 @@ def get_situation():
     situation = situation_full.replace('\n', '')
     return situation
 
-partespa = soup.find(id = 'tabelaPartes30')
-partespa_ = partespa.get_text()
-partiespa_ = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-'').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '').replace('\t',
-' ').replace('                            ', ' ').replace('         ','')
-print(partiespa_)
+
+def get_last_event():
+    last_event_in = soupt.find('Último Evento')
+    last_event_out = soupt.find('Cartório Extrajudicial:')
+    last_event_full = soupt[last_event_in:last_event_out]
+    last_event = last_event_full.replace('\n', '').replace('Último Evento', '')
+    return last_event
+
+
+def extract_lawsuit_id():
+        matcher = re.compile(r"\d{7}-\d{2}\.\d{4}\.\d\.\d{2}.\d{4}")
+        result = matcher.search(soupt)
+        if result:
+            return result.group()
+        return None
+
+def extract_lawsuit_value():
+    text = soup.get_text()
+    declared_value = re.search(r"\n?R\$(.*)\n", text)
+    return declared_value
+
+#print(extract_lawsuit_value())
+
+def lawsuit_value(soup):
+    text = soup.get_text()
+    declared_value = re.search(r"\n?R\$(.*)\n", text)
+    values = {"declared_value": ""}
+    if declared_value:
+        values["declared_value"] = declared_value.groups()[0].strip()
+    return values
+
+#print(lawsuit_value(soup))
+
+additional_info = {
+    'id': get_id(),
+    'judge': find_judge(),
+    'court': get_court(),
+    'latest event': get_last_event(),
+    'subject': get_subject(),
+    'situation': get_situation()
+}
