@@ -41,7 +41,7 @@ for idd in law_ids:
     #data = b.html
 
     cookies = {
-    'JSESSIONID': 'E9924C0F99A406E99BBB94980ECC824D.tomcat21',
+    'JSESSIONID': '1380A4959CE1A34F6A104B6086A74625.tomcat21',
 } 
 
     r = requests.post(url1, cookies=cookies)
@@ -110,8 +110,8 @@ for idd in law_ids:
         fase_in = soupt.find('Fase')
         fase_out = soupt.find('Objeto')
         faset = soupt[fase_in:fase_out]
-        fase_proc = faset.replace ('\n', '').replace('      ', ' ').replace('Fase  Processual:', '')
-        return fase_proc
+        fase = faset.replace ('\n', '').replace('      ', ' ').replace('Fase\r  Processual:', '')
+        return fase
         
     #FIND LAWSUIT VALUE
 
@@ -147,26 +147,23 @@ for idd in law_ids:
         partes = soup.find(id = 'tabelaPartes29')
         if partes != None:
             partest = partes.get_text()
-            partiespp = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '').replace('\t',
-            ' ').replace('                            ',' ').replace('         ','').replace('         ','').replace('\r','')
-            return partiespp
+            partes_polo_passivo = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('\t','').replace('\r','').replace('        ','')
+            return partes_polo_passivo
         else:
             partes = soup.find(id = 'tabelaPartes0')
             if partes != None:
                 partest= partes.get_text()
-                partiespp = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-                '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '').replace('\t',
-                ' ').replace('                            ',' ').replace('                   ', '').replace('         ','').replace('\r','')
-                return partiespp
+                partes_polo_passivo = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+                '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('\t','').replace('\r','').replace('        ','')
+                return partes_polo_passivo
             else:
                 partes = soup.find(id = 'tabelaPartes16')
             if partes != None:
                 partest= partes.get_text()
-                partiespp = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-                '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '').replace('\t',
-                ' ').replace('                            ',' ').replace('         ','') .replace('\r','')
-                return partiespp
+                partes_polo_passivo = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+                '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('\t','').replace('\r','').replace('        ','')
+                return partes_polo_passivo
             else:
                 return ''
 
@@ -175,8 +172,7 @@ for idd in law_ids:
         if reu_ != None:
             reu_t= reu_.get_text()
             reu = reu_t.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '').replace('\t',
-            ' ').replace('                            ', ' ').replace('         ','').replace('\r','')
+            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('\t','').replace('\r','').replace('        ','')
             return reu
         else:
             return ''
@@ -186,26 +182,23 @@ for idd in law_ids:
         partespa = soup.find(id = 'tabelaPartes30')
         if partespa != None:
             partespa_ = partespa.get_text()
-            partiespa = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '').replace('\t',
-            ' ').replace('                            ', ' ').replace('         ','').replace('\r','')
-            return partiespa
+            partes_polo_ativo = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('\t','').replace('\r','').replace('        ','')
+            return partes_polo_ativo
         else:
             partespa = soup.find(id = 'tabelaPartes1')
             if partespa != None:
                 partespa_ = partespa.get_text()
-                partiespa = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-                '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '').replace('\t',
-                ' ').replace('                            ', ' ').replace('         ','').replace('\r','')
-                return partiespa
+                partes_polo_ativo = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+                '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('\t','').replace('\r','').replace('        ','')
+                return partes_polo_ativo
             else:
                 partespa = soup.find(id = 'tabelaPartes4')
             if partespa != None:
                 partespa_ = partespa.get_text()
-                partiespa = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-                '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '').replace('\t',
-                ' ').replace('                            ', ' ').replace('         ','').replace('\r','') 
-                return partiespa
+                partes_polo_ativo = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+                '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('\t','').replace('\r','').replace('        ','') 
+                return partes_polo_ativo
             else:
                 return ''
 
@@ -214,8 +207,7 @@ for idd in law_ids:
         if autor_ != None:
             autor_t= autor_.get_text()
             autor = autor_t.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '').replace('\t',
-            ' ').replace('                            ', ' ').replace('         ','').replace('\r','')
+            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('\t','').replace('\r','').replace('        ','')
             return autor
         else:
             return ''
@@ -226,34 +218,33 @@ for idd in law_ids:
     #ADVOGADOS POLO PASSIVO:
 
     def find_lawpp():
-        s_advpp = soup.find(id = 'tabelaAdvogadoPartes29')
-        if s_advpp != None:
-            advpp_ = s_advpp.get_text()
-            advppl = advpp_[20:]
-            advpp = advppl.replace('\n', '').replace('  ', '').replace('			 ',' ')
-            return advpp
+        s_lawyer = soup.find(id = 'tabelaAdvogadoPartes29')
+        if s_lawyer != None:
+            lawyer_ = s_lawyer.get_text()
+            lawyer_full = lawyer_[20:]
+            lawyer_passive = lawyer_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+            return lawyer_passive
         else:
-            s_advppc = soup.find(id = 'tabelaAdvogadoPartes0')
-            if s_advppc != None:
-                advppc_ = s_advppc.get_text()
-                advppce = advppc_[20:]
-                advppc = advppce.replace('\n', '').replace('  ', '').replace('			 ',' ')
-                return advppc
+            s_lawyer = soup.find(id = 'tabelaAdvogadoPartes0')
+            if s_lawyer != None:
+                lawyer_ = s_lawyer.get_text()
+                lawyer_full = lawyer_[20:]
+                lawyer_passive = lawyer_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+                return lawyer_passive
             else:
-                s_advppc = soup.find(id = 'tabelaAdvogadoPartes16')
-            if s_advppc != None:
-                advppc_ = s_advppc.get_text()
-                advppce = advppc_[20:]
-                advppc = advppce.replace('\n', '').replace('  ', '').replace('			 ',' ')
-                return advppc
+                s_lawyer = soup.find(id = 'tabelaAdvogadoPartes16')
+            if s_lawyer != None:
+                lawyer_ = s_lawyer.get_text()
+                lawyer_full = lawyer_[20:]
+                lawyer_passive = lawyer_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+                return lawyer_passive
             else:
-                s_advppc = soup.find(id = 'tabelaAdvogadoPartes67')
-            if s_advppc != None:
-                advppc_ = s_advppc.get_text()
-                advppce = advppc_[20:]
-                advppc = advppce.replace('\n', '').replace('  ', '').replace('			 ',' ')
-
-                return advppc
+                s_lawyer = soup.find(id = 'tabelaAdvogadoPartes67')
+            if s_lawyer != None:
+                lawyer_ = s_lawyer.get_text()
+                lawyer_full = lawyer_[20:]
+                lawyer_passive = lawyer_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+                return lawyer_passive
             else:
                 return''
 
@@ -261,33 +252,33 @@ for idd in law_ids:
     #ADVOGADOS POLO ATIVO:
 
     def find_lawpa():   
-        s_advpa = soup.find(id = 'tabelaAdvogadoPartes30')
-        if s_advpa != None:
-            advpa_ = s_advpa.get_text()
-            advpae = advpa_[20:]
-            advpa = advpae.replace('\n', '').replace('  ', '').replace('			 ',' ')
-            return advpa
+        ss_lawyer = soup.find(id = 'tabelaAdvogadoPartes30')
+        if ss_lawyer != None:
+            lawyer_a = ss_lawyer.get_text()
+            lawyer_a_full = lawyer_a[20:]
+            lawyer_active = lawyer_a_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+            return lawyer_active
         else:
-            s_advpac = soup.find(id = 'tabelaAdvogadoPartes1')
-            if s_advpac != None:
-                advpac_ = s_advpac.get_text()
-                advpace = advpac_[20:]
-                advpac = advpace.replace('\n', '').replace('  ', '').replace('			 ',' ')
-                return advpac
+            ss_lawyer = soup.find(id = 'tabelaAdvogadoPartes1')
+            if ss_lawyer != None:
+                lawyer_a = ss_lawyer.get_text()
+                lawyer_a_full = lawyer_a[20:]
+                lawyer_active = lawyer_a_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+                return lawyer_active
             else:
-                s_advpac = soup.find(id = 'tabelaAdvogadoPartes4')
-            if s_advpac != None:
-                advpac_ = s_advpac.get_text()
-                advpace = advpac_[20:]
-                advpac = advpace.replace('\n', '').replace('  ', '').replace('			 ',' ')
-                return advpac
+                ss_lawyer = soup.find(id = 'tabelaAdvogadoPartes4')
+            if ss_lawyer != None:
+                lawyer_a = ss_lawyer.get_text()
+                lawyer_a_full = lawyer_a[20:]
+                lawyer_active = lawyer_a_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+                return lawyer_active
             else:
-                s_advpac = soup.find(id = 'tabelaAdvogadoPartes14')
-            if s_advpac != None:
-                advpac_ = s_advpac.get_text()
-                advpace = advpac_[20:]
-                advpac = advpace.replace('\n', '').replace('  ', '').replace('			 ',' ')
-                return advpac
+                ss_lawyer = soup.find(id = 'tabelaAdvogadoPartes14')
+            if ss_lawyer != None:
+                lawyer_a = ss_lawyer.get_text()
+                lawyer_a_full = lawyer_a[20:]
+                lawyer_active = lawyer_a_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+                return lawyer_active
             else:
                 return ''
 
@@ -295,15 +286,22 @@ for idd in law_ids:
     #GET FOLLOWUP :
 
     def get_followup():
-        andamentos_in = soupt.find('Arquivos/Observação')
-        andamentos_out = soupt.find('var ar = document.getElement')
-        follow_ups = soupt[andamentos_in:andamentos_out]
-        follow_up = follow_ups.replace('\n\n', '').replace('Movimentação sem arquivos', '').replace('Arquivos/Observação',
-        'Andamentos:')
-        return follow_up
+        andamentos = {}
+        i = 0
+        for td in soup.find_all(size='2'):
+            followup = td.next_element
+            details_ = followup.next_element.next_element.next_element
+            details = str(details_).replace('\r\n', '').replace('                                                                    ', '')
+            date_ = details_.next_element.next_element
+            datet = str(date_)
+            date = datet.replace('<td align="center" nowrap="" width="100">', '').replace('</td>','')
+            if date != '\n':
+                andamentos.update({str(i):[date,followup, details]})
+                i += 1
+        return andamentos
 
     
-    print('Done')
+    print('Lawsuit '+get_id()+' acquired')
 
     #STORE LAWSUIT DATA
 
@@ -317,7 +315,7 @@ for idd in law_ids:
         'phase': get_phase(),
         'situation': get_situation(), 
         'value': get_value(),
-        'last event': get_last_event(),
+        'lastest event': get_last_event(),
         'active party':[ 
             get_partiespa(),
             get_autor()
@@ -334,6 +332,7 @@ for idd in law_ids:
     with open(idd+'.json', 'w') as outfile:
         json.dump(lawsuit, outfile, ensure_ascii=False, indent=4)
 
+    del law_ids[0]
 
 
 

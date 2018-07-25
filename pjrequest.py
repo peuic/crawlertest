@@ -5,7 +5,7 @@ import json
 url = 'https://projudi.tjba.jus.br/projudi/buscas/ProcessosParte' 
 
 cookies = {
-    'JSESSIONID': '6F89E08CC84C31A8D8156CC90114A31E.tomcat21',
+    'JSESSIONID': '5D4753ACC6A09C5B6211E26750DF59E5.tomcat31',
 } 
 
 page = 1
@@ -59,19 +59,18 @@ law_ids = {
     ]
 }
 law_num = []
-index=0
 
-while (page <= 20):
+while (page <= 100):
     r = requests.post(url, cookies=cookies, data=data)
     pag = r.text
     soup = BeautifulSoup(pag, 'html.parser')
 
     for link in soup.find_all('a', 'style2'):
         law_ids['ids'].append(link.get('href')[48:])
-    page = page+1
-    index += 1
-    data[36] = ('pagina', str(page))
     print(page)
+    page = page+1
+    data[36] = ('pagina', str(page))
+    
 
  
 

@@ -103,10 +103,10 @@ def get_partiespp():
     partes = soup.find(id = 'tabelaPartes29')
     if partes != None:
         partest = partes.get_text()
-        partiespp_ = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '')
-        parties_pp = partiespp_[9:]
-        return parties_pp
+        partiespp = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '').replace('\t',
+        ' ').replace('                            ',' ').replace('         ','').replace('         ','').replace('\r','')
+        return partiespp
     else:
         partes = soup.find(id = 'tabelaPartes0')
         if partes != None:
@@ -131,9 +131,8 @@ def get_partiespa():
     partespa = soup.find(id = 'tabelaPartes30')
     if partespa != None:
         partespa_ = partespa.get_text()
-        partiespa_ = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
-        partiespa = partiespa_[9:]
+        partiespa = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
+        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('\t','').replace('\r','').replace('        ','')
         return partiespa
     else:
         partespa = soup.find(id = 'tabelaPartes1')
@@ -155,7 +154,7 @@ def get_partiespa():
             return ''
 
 
-#print ('Polo Passivo:', get_partiespp(), '\n','Polo Ativo: ', get_partiespa(), '\n')
+print ('Polo Passivo:', get_partiespp(), '\n','Polo Ativo: ', get_partiespa(), '\n')
 
 #GET LAWYERS DATA:
 
@@ -286,6 +285,43 @@ def lawsuit_value(soup):
     return values
 
 #print(lawsuit_value(soup))
+
+
+#def follo():
+#    for td in soup.find_all(size='2'):
+#        followup = td.next_element
+        #print(followup)
+#        details = followup.next_element.next_element.next_element
+        #print(details)
+#        date_ = details.next_element.next_element
+#        datet = str(date_)
+#        date = datet.replace('<td align="center" nowrap="" width="100">', '').replace('</td>','')
+        #print(date)
+
+
+andamentos = {
+}
+
+
+def folup():
+    andamentos = {
+}
+    i = 0
+    for td in soup.find_all(size='2'):
+        followup = td.next_element
+        details_ = followup.next_element.next_element.next_element
+        details = str(details_)
+        date_ = details_.next_element.next_element
+        datet = str(date_)
+        date = datet.replace('<td align="center" nowrap="" width="100">', '').replace('</td>','')
+        print(followup)
+        if date != '\n':
+            andamentos.update({'andamento'+str(i):[date,followup, details]})
+            i += 1
+    return andamentos
+
+#print(folup())
+
 
 additional_info = {
     'id': get_id(),
