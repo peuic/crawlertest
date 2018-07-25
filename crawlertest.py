@@ -261,7 +261,6 @@ def get_last_event():
     last_event = last_event_full.replace('\n', '').replace('Último Evento', '')
     return last_event
 
-
 def extract_lawsuit_id():
         matcher = re.compile(r"\d{7}-\d{2}\.\d{4}\.\d\.\d{2}.\d{4}")
         result = matcher.search(soupt)
@@ -285,18 +284,6 @@ def lawsuit_value(soup):
     return values
 
 #print(lawsuit_value(soup))
-
-
-#def follo():
-#    for td in soup.find_all(size='2'):
-#        followup = td.next_element
-        #print(followup)
-#        details = followup.next_element.next_element.next_element
-        #print(details)
-#        date_ = details.next_element.next_element
-#        datet = str(date_)
-#        date = datet.replace('<td align="center" nowrap="" width="100">', '').replace('</td>','')
-        #print(date)
 
 
 andamentos = {

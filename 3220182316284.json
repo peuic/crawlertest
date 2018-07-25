@@ -1,0 +1,54 @@
+{
+    "id": "0097879-62.2018.8.05.0001",
+    "judge": "LEO ANDRE CERVEIRA ",
+    "court": "13ª VSJE DO CONSUMIDOR (MATUTINO) ",
+    "date": "23 de Julho de 2018",
+    "class": "Procedimento do Juizado Especial Cível « Procedimento de Conhecimento « Processo de Conhecimento « PROCESSO CÍVEL E DO TRABALHO",
+    "subject": "Indenização por Dano Moral « Responsabilidade do Fornecedor « DIREITO DO CONSUMIDOR  ",
+    "phase": "CONHECIMENTO ",
+    "situation": "  ",
+    "value": "R$ 10.000,00",
+    "lastest event": "Expedição de Citação",
+    "active party": [
+        "MARCELO SOUZA DE ARAGAO    ",
+        ""
+    ],
+    "lawyer active": "HENRIQUE CHAVES BERNARDO   37189N-BA DANIEL DE MATOS SOUZA   42004N-BA",
+    "passive party": [
+        "MC COMERCIO DE PRODUTOS OTICOS LTDA    ",
+        ""
+    ],
+    "lawyer passive": " Nenhum advogado cadastrado.",
+    "follow up": {
+        "0": [
+            "24/07/18",
+            "Citação expedido(a)",
+            "  Para MC COMERCIO DE PRODUTOS OTICOS LTDA"
+        ],
+        "1": [
+            "23/07/18",
+            "Expedição de Citação",
+            "  Para MC COMERCIO DE PRODUTOS OTICOS LTDA"
+        ],
+        "2": [
+            "23/07/18",
+            "Intimação lido(a)",
+            "  (Para MARCELO SOUZA DE ARAGAO) em 23/07/18 *Referente ao evento Audiência  Una Designada(23/07/18)"
+        ],
+        "3": [
+            "23/07/18",
+            "Audiência  Una Designada",
+            "  (Agendada para 24 de Agosto de 2018 às 09:50 h)"
+        ],
+        "4": [
+            "23/07/18",
+            "Distribuído por Sorteio",
+            "  13ª VSJE DO CONSUMIDOR (MATUTINO)"
+        ],
+        "5": [
+            "23/07/18",
+            "Recebido pelo Distribuidor",
+            "  Origem: OAB37189NBA"
+        ]
+    }
+}

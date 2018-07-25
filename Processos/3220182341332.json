@@ -1,0 +1,49 @@
+{
+    "id": "0098988-14.2018.8.05.0001",
+    "judge": "JUIZ DESIGNADO ",
+    "court": "16ª VSJE DO CONSUMIDOR (VESPERTINO) ",
+    "date": "25 de Julho de 2018",
+    "class": "Procedimento do Juizado Especial Cível « Procedimento de Conhecimento « Processo de Conhecimento « PROCESSO CÍVEL E DO TRABALHO",
+    "subject": "Indenização por Dano Moral « Responsabilidade do Fornecedor « DIREITO DO CONSUMIDOR  ",
+    "phase": "CONHECIMENTO ",
+    "situation": "  ",
+    "value": "R$ 20.000,00",
+    "lastest event": "Citação expedido(a)",
+    "active party": [
+        "THAIS FREITAS DA SILVA    ",
+        ""
+    ],
+    "lawyer active": "WLADIMIR SILVA CARDOSO   29740N-BA",
+    "passive party": [
+        "BANCO BRADESCO CARTOES S A       ",
+        ""
+    ],
+    "lawyer passive": " Nenhum advogado cadastrado.",
+    "follow up": {
+        "0": [
+            "25/07/18",
+            "Citação expedido(a)",
+            "  Para BANCO BRADESCO CARTOES S A"
+        ],
+        "1": [
+            "25/07/18",
+            "Intimação lido(a)",
+            "  (Para THAIS FREITAS DA SILVA) em 25/07/18 *Referente ao evento Audiência  Una Designada(25/07/18)"
+        ],
+        "2": [
+            "25/07/18",
+            "Audiência  Una Designada",
+            "  (Agendada para 5 de Setembro de 2018 às 14:10 h)"
+        ],
+        "3": [
+            "25/07/18",
+            "Distribuído por Sorteio",
+            "  16ª VSJE DO CONSUMIDOR (VESPERTINO)"
+        ],
+        "4": [
+            "25/07/18",
+            "Recebido pelo Distribuidor",
+            "  Origem: OAB29740NBA"
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "id": "0004746-98.2018.8.05.0248",
+    "judge": "ANA PAULA FERNANDES TEIXEIRA ",
+    "court": "1ª Vara do Sistema dos Juizados - SERRINHA ",
+    "date": "25 de Julho de 2018",
+    "class": "Procedimento do Juizado Especial Cível « Procedimento de Conhecimento « Processo de Conhecimento « PROCESSO CÍVEL E DO TRABALHO",
+    "subject": "Nota Promissória « Espécies de Títulos de Crédito « Obrigações « DIREITO CIVIL  ",
+    "phase": "CONHECIMENTO ",
+    "situation": "  ",
+    "value": "R$ 575,00",
+    "lastest event": "Expedição de Citação",
+    "active party": [
+        "EVANILDA DAMASCENO SILVA    ",
+        ""
+    ],
+    "lawyer active": " Nenhum advogado cadastrado.",
+    "passive party": [
+        "EUSTAQUIO FERREIRA CAMPOS    ",
+        ""
+    ],
+    "lawyer passive": " Nenhum advogado cadastrado.",
+    "follow up": {
+        "0": [
+            "25/07/18",
+            "Expedição de Citação",
+            "  Para EUSTAQUIO FERREIRA CAMPOS"
+        ],
+        "1": [
+            "25/07/18",
+            "Intimação lido(a)",
+            "  (Para EVANILDA DAMASCENO SILVA) em 25/07/18 *Referente ao evento Audiência  Una Designada(25/07/18)"
+        ],
+        "2": [
+            "25/07/18",
+            "Audiência  Una Designada",
+            "  (Agendada para 7 de Novembro de 2018 às 10:40 h)"
+        ],
+        "3": [
+            "25/07/18",
+            "Distribuído por Sorteio",
+            "  1ª Vara do Sistema dos Juizados - SERRINHA"
+        ],
+        "4": [
+            "25/07/18",
+            "Recebido pelo Distribuidor",
+            "\n"
+        ]
+    }
+}

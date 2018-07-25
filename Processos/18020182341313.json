@@ -1,0 +1,49 @@
+{
+    "id": "0007572-42.2018.8.05.0137",
+    "judge": "BERNARDO MARIO DANTAS LUBAMBO ",
+    "court": "1ª Vara do Sistema dos Juizados - JACOBINA ",
+    "date": "25 de Julho de 2018",
+    "class": "Procedimento do Juizado Especial Cível « Procedimento de Conhecimento « Processo de Conhecimento « PROCESSO CÍVEL E DO TRABALHO",
+    "subject": "Indenização por Dano Material « Responsabilidade do Fornecedor « DIREITO DO CONSUMIDOR  ",
+    "phase": "CONHECIMENTO ",
+    "situation": "  ",
+    "value": "R$ 1.000,00",
+    "lastest event": "Expedição de Citação",
+    "active party": [
+        "EULINA MARIA DE JESUS    ",
+        ""
+    ],
+    "lawyer active": "ERIC RODRIGO LOPES RIBEIRO   40624N-BA",
+    "passive party": [
+        "BANCO CETELEM S A    ",
+        ""
+    ],
+    "lawyer passive": " Nenhum advogado cadastrado.",
+    "follow up": {
+        "0": [
+            "25/07/18",
+            "Expedição de Citação",
+            "  Para BANCO CETELEM S A"
+        ],
+        "1": [
+            "25/07/18",
+            "Intimação lido(a)",
+            "  (Para EULINA MARIA DE JESUS) em 25/07/18 *Referente ao evento Audiência  Una Designada(25/07/18)"
+        ],
+        "2": [
+            "25/07/18",
+            "Audiência  Una Designada",
+            "  (Agendada para 20 de Novembro de 2018 às 09:00 h)"
+        ],
+        "3": [
+            "25/07/18",
+            "Distribuído por Sorteio",
+            "  1ª Vara do Sistema dos Juizados - JACOBINA"
+        ],
+        "4": [
+            "25/07/18",
+            "Recebido pelo Distribuidor",
+            "  Origem: OAB40624NBA"
+        ]
+    }
+}

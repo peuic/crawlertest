@@ -1,0 +1,54 @@
+{
+    "id": "0097886-54.2018.8.05.0001",
+    "judge": "JUIZ DESIGNADO ",
+    "court": "5ª VSJE DO CONSUMIDOR (MATUTINO) ",
+    "date": "23 de Julho de 2018",
+    "class": "Procedimento do Juizado Especial Cível « Procedimento de Conhecimento « Processo de Conhecimento « PROCESSO CÍVEL E DO TRABALHO",
+    "subject": "Seguro « Contratos de Consumo « DIREITO DO CONSUMIDOR  ",
+    "phase": "CONHECIMENTO ",
+    "situation": "  ",
+    "value": "R$ 38.160,00",
+    "lastest event": "Expedição de Citação",
+    "active party": [
+        "ALESSANDRA PAIXAO DOS SANTOS    ",
+        ""
+    ],
+    "lawyer active": "LAIZA RODRIGUES DE SOUZA DE OLIVEIRA   57422N-BA",
+    "passive party": [
+        "AVANTI BRASIL SOLUCOES EMPRESARIAS S A    ",
+        ""
+    ],
+    "lawyer passive": " Nenhum advogado cadastrado.",
+    "follow up": {
+        "0": [
+            "24/07/18",
+            "Citação expedido(a)",
+            "  Para AVANTI BRASIL SOLUCOES EMPRESARIAS S A"
+        ],
+        "1": [
+            "23/07/18",
+            "Expedição de Citação",
+            "  Para AVANTI BRASIL SOLUCOES EMPRESARIAS S A"
+        ],
+        "2": [
+            "23/07/18",
+            "Intimação lido(a)",
+            "  (Para ALESSANDRA PAIXAO DOS SANTOS) em 23/07/18 *Referente ao evento Audiência  Una Designada(23/07/18)"
+        ],
+        "3": [
+            "23/07/18",
+            "Audiência  Una Designada",
+            "  (Agendada para 29 de Agosto de 2018 às 07:40 h)"
+        ],
+        "4": [
+            "23/07/18",
+            "Distribuído por Sorteio",
+            "  5ª VSJE DO CONSUMIDOR (MATUTINO)"
+        ],
+        "5": [
+            "23/07/18",
+            "Recebido pelo Distribuidor",
+            "  Origem: OAB57422NBA"
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "id": "0005325-03.2018.8.05.0230",
+    "judge": "NUNISVALDO DOS SANTOS ",
+    "court": "Vara do Sistema dos Juizados - SANTO ESTEVÃO ",
+    "date": "25 de Julho de 2018",
+    "class": "Procedimento do Juizado Especial Cível « Procedimento de Conhecimento « Processo de Conhecimento « PROCESSO CÍVEL E DO TRABALHO   ",
+    "subject": "Indenização por Dano Moral « Responsabilidade do Fornecedor « DIREITO DO CONSUMIDOR  ",
+    "phase": "CONHECIMENTO ",
+    "situation": "  ",
+    "value": "R$ 38.160,00",
+    "lastest event": "Citação expedido(a)",
+    "active party": [
+        "DERALDO DE JESUS GONCALVES    ",
+        ""
+    ],
+    "lawyer active": "NIRVAN DANTAS JACOBINA BRITO JUNIOR   20855N-BA",
+    "passive party": [
+        "COELBA COMPANHIA DE ELETRICIDADE DO ESTADO DA BAHIA COELBA       ",
+        ""
+    ],
+    "lawyer passive": " Nenhum advogado cadastrado.",
+    "follow up": {
+        "0": [
+            "25/07/18",
+            "Citação expedido(a)",
+            "  Para COELBA COMPANHIA DE ELETRICIDADE DO ESTADO DA BAHIA COELBA"
+        ],
+        "1": [
+            "25/07/18",
+            "Intimação lido(a)",
+            "  (Para DERALDO DE JESUS GONCALVES) em 25/07/18 *Referente ao evento Audiência  de Conciliação Designada(25/07/18)"
+        ],
+        "2": [
+            "25/07/18",
+            "Audiência  de Conciliação Designada",
+            "  (Agendada para 6 de Novembro de 2018 às 09:30 h)"
+        ],
+        "3": [
+            "25/07/18",
+            "Distribuído por Sorteio",
+            "  Vara do Sistema dos Juizados - SANTO ESTEVÃO"
+        ],
+        "4": [
+            "25/07/18",
+            "Recebido pelo Distribuidor",
+            "  Origem: OAB20855NBA"
+        ]
+    }
+}

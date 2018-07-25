@@ -1,0 +1,49 @@
+{
+    "id": "0003670-54.2018.8.05.0146",
+    "judge": "MAURICIO BAPTISTA ALVES ",
+    "court": "2ª Vara do Sistema dos Juizados - JUAZEIRO ",
+    "date": "25 de Julho de 2018",
+    "class": "Procedimento do Juizado Especial Cível « Procedimento de Conhecimento « Processo de Conhecimento « PROCESSO CÍVEL E DO TRABALHO",
+    "subject": "Obrigação de Fazer / Não Fazer « Responsabilidade do Fornecedor « DIREITO DO CONSUMIDOR  ",
+    "phase": "CONHECIMENTO ",
+    "situation": "  ",
+    "value": "R$ 8.000,00",
+    "lastest event": "Intimação lido(a)",
+    "active party": [
+        "GIOVANDA AVELINA SILVA DOS SANTOS    ",
+        ""
+    ],
+    "lawyer active": " Nenhum advogado cadastrado.",
+    "passive party": [
+        "AMBEV COMPANHIA DE BEBIDAS DAS AMERICAS    ",
+        ""
+    ],
+    "lawyer passive": " Nenhum advogado cadastrado.",
+    "follow up": {
+        "0": [
+            "25/07/18",
+            "Expedição de Citação",
+            "  Para AMBEV COMPANHIA DE BEBIDAS DAS AMERICAS"
+        ],
+        "1": [
+            "25/07/18",
+            "Intimação lido(a)",
+            "  (Para GIOVANDA AVELINA SILVA DOS SANTOS) em 25/07/18 *Referente ao evento Audiência  de Conciliação Designada(25/07/18)"
+        ],
+        "2": [
+            "25/07/18",
+            "Audiência  de Conciliação Designada",
+            "  (Agendada para 25 de Setembro de 2018 às 14:00 h)"
+        ],
+        "3": [
+            "25/07/18",
+            "Distribuído por Sorteio",
+            "  2ª Vara do Sistema dos Juizados - JUAZEIRO"
+        ],
+        "4": [
+            "25/07/18",
+            "Recebido pelo Distribuidor",
+            "\n"
+        ]
+    }
+}

@@ -41,7 +41,7 @@ for idd in law_ids:
     #data = b.html
 
     cookies = {
-    'JSESSIONID': '1380A4959CE1A34F6A104B6086A74625.tomcat21',
+    'JSESSIONID': 'DDE29BBC3C6CC0CEB201F7F0C17957CC.tomcat21',
 } 
 
     r = requests.post(url1, cookies=cookies)
@@ -91,8 +91,7 @@ for idd in law_ids:
         classe_in = soupt.find('Classe:')
         classe_out = soupt.find('Segredo de Justiça')
         classe_ = soupt[classe_in:classe_out]
-        classe = classe_.replace('\n', '').replace('Este processo possui 1 suspeita de prevenção', '').replace('Este processo possui 2 suspeitas de prevenção',
-        '').replace('Classe:', '')
+        classe = classe_.replace('\n', '').replace('Classe:', '')
         return classe
 
     #GET SUBJECT

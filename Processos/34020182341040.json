@@ -1,0 +1,54 @@
+{
+    "id": "0002141-81.2018.8.05.0022",
+    "judge": "OCLEI ALVES DA SILVA ",
+    "court": "1ª Vara do Sistema dos Juizados - BARREIRAS ",
+    "date": "25 de Julho de 2018",
+    "class": "Procedimento do Juizado Especial Cível « Procedimento de Conhecimento « Processo de Conhecimento « PROCESSO CÍVEL E DO TRABALHO",
+    "subject": "Obrigação de Fazer / Não Fazer « Responsabilidade do Fornecedor « DIREITO DO CONSUMIDOR  ",
+    "phase": "CONHECIMENTO ",
+    "situation": "  ",
+    "value": "R$ 15.000,00",
+    "lastest event": "Citação expedido(a)",
+    "active party": [
+        "FLORACI DE MEDEIROS    ",
+        ""
+    ],
+    "lawyer active": " Nenhum advogado cadastrado.",
+    "passive party": [
+        "COELBA COMPANHIA DE ELETRICIDADE DO ESTADO DA BAHIA COELBA       ",
+        ""
+    ],
+    "lawyer passive": " Nenhum advogado cadastrado.",
+    "follow up": {
+        "0": [
+            "25/07/18",
+            "Citação expedido(a)",
+            "  Para COELBA COMPANHIA DE ELETRICIDADE DO ESTADO DA BAHIA COELBA"
+        ],
+        "1": [
+            "25/07/18",
+            "Intimação lido(a)",
+            "  (Para FLORACI DE MEDEIROS) em 25/07/18 *Referente ao evento Audiência  Una Designada(25/07/18)"
+        ],
+        "2": [
+            "25/07/18",
+            "Audiência  Una Designada",
+            "  (Agendada para 28 de Agosto de 2018 às 10:20 h)"
+        ],
+        "3": [
+            "25/07/18",
+            "Conclusos para Pedido Urgência",
+            "\n"
+        ],
+        "4": [
+            "25/07/18",
+            "Distribuído por Sorteio",
+            "  1ª Vara do Sistema dos Juizados - BARREIRAS"
+        ],
+        "5": [
+            "25/07/18",
+            "Recebido pelo Distribuidor",
+            "\n"
+        ]
+    }
+}

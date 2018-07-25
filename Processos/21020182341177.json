@@ -1,0 +1,49 @@
+{
+    "id": "0011228-35.2018.8.05.0063",
+    "judge": "CRISTIANE CUNHA FERNANDES ",
+    "court": "Vara do Sistema dos Juizados - CONCEIÇÃO DO COITÉ ",
+    "date": "25 de Julho de 2018",
+    "class": "Procedimento do Juizado Especial Cível « Procedimento de Conhecimento « Processo de Conhecimento « PROCESSO CÍVEL E DO TRABALHO   Este processo possui 2 suspeitas de prevenções",
+    "subject": "Indenização por Dano Moral « Responsabilidade do Fornecedor « DIREITO DO CONSUMIDOR  ",
+    "phase": "CONHECIMENTO ",
+    "situation": "  ",
+    "value": "R$ 5.000,00",
+    "lastest event": "Citação expedido(a)",
+    "active party": [
+        "ZENILDA DE ALMEIDA    ",
+        ""
+    ],
+    "lawyer active": "ERISTON GONCALVES MENDES MOTA   48594N-BA",
+    "passive party": [
+        "COELBA COMPANHIA DE ELETRICIDADE DO ESTADO DA BAHIA COELBA       ",
+        ""
+    ],
+    "lawyer passive": " Nenhum advogado cadastrado.",
+    "follow up": {
+        "0": [
+            "25/07/18",
+            "Citação expedido(a)",
+            "  Para COELBA COMPANHIA DE ELETRICIDADE DO ESTADO DA BAHIA COELBA"
+        ],
+        "1": [
+            "25/07/18",
+            "Intimação lido(a)",
+            "  (Para ZENILDA DE ALMEIDA) em 25/07/18 *Referente ao evento Audiência  Una Designada(25/07/18)"
+        ],
+        "2": [
+            "25/07/18",
+            "Audiência  Una Designada",
+            "  (Agendada para 30 de Agosto de 2019 às 10:50 h)"
+        ],
+        "3": [
+            "25/07/18",
+            "Distribuído por Sorteio",
+            "  Vara do Sistema dos Juizados - CONCEIÇÃO DO COITÉ"
+        ],
+        "4": [
+            "25/07/18",
+            "Recebido pelo Distribuidor",
+            "  Origem: OAB48594NBA"
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "id": "0018370-39.2018.8.05.0080",
+    "judge": "JAQUELINE MOREIRA KRUSCHEWSKY ",
+    "court": "2ª Vara do Sistema dos Juizados - FEIRA DE SANTANA ",
+    "date": "25 de Julho de 2018",
+    "class": "Procedimento do Juizado Especial Cível « Procedimento de Conhecimento « Processo de Conhecimento « PROCESSO CÍVEL E DO TRABALHO   Este processo possui 2 suspeitas de prevenções",
+    "subject": "Indenização por Dano Moral « Responsabilidade do Fornecedor « DIREITO DO CONSUMIDOR  ",
+    "phase": "CONHECIMENTO ",
+    "situation": "  ",
+    "value": "R$ 38.000,00",
+    "lastest event": "Expedição de Citação",
+    "active party": [
+        "LUANA RODRIGUES DE OLIVEIRA MACHADO    ",
+        ""
+    ],
+    "lawyer active": "BRUNO RIBEIRO FILADELFO   23105N-BA",
+    "passive party": [
+        "TIM CELULAR S A    ",
+        ""
+    ],
+    "lawyer passive": " Nenhum advogado cadastrado.",
+    "follow up": {
+        "0": [
+            "25/07/18",
+            "Expedição de Citação",
+            "  Para TIM CELULAR S A"
+        ],
+        "1": [
+            "25/07/18",
+            "Intimação lido(a)",
+            "  (Para LUANA RODRIGUES DE OLIVEIRA MACHADO) em 25/07/18 *Referente ao evento Audiência  Una Designada(25/07/18)"
+        ],
+        "2": [
+            "25/07/18",
+            "Audiência  Una Designada",
+            "  (Agendada para 27 de Setembro de 2018 às 11:30 h)"
+        ],
+        "3": [
+            "25/07/18",
+            "Distribuído por Sorteio",
+            "  2ª Vara do Sistema dos Juizados - FEIRA DE SANTANA"
+        ],
+        "4": [
+            "25/07/18",
+            "Recebido pelo Distribuidor",
+            "  Origem: OAB23105NBA"
+        ]
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "id": "0098981-22.2018.8.05.0001",
+    "judge": "LEO ANDRE CERVEIRA ",
+    "court": "13ª VSJE DO CONSUMIDOR (MATUTINO) ",
+    "date": "25 de Julho de 2018",
+    "class": "Procedimento do Juizado Especial Cível « Procedimento de Conhecimento « Processo de Conhecimento « PROCESSO CÍVEL E DO TRABALHO",
+    "subject": "Telefonia « Contratos de Consumo « DIREITO DO CONSUMIDOR  ",
+    "phase": "CONHECIMENTO ",
+    "situation": "  ",
+    "value": "R$ 19.080,00",
+    "lastest event": "Expedição de Citação",
+    "active party": [
+        "MARCIO FRANCA MONTEIRO       ",
+        ""
+    ],
+    "lawyer active": " Nenhum advogado cadastrado.",
+    "passive party": [
+        "NEXTEL TELECOMUNICACOES LTDA    ",
+        ""
+    ],
+    "lawyer passive": " Nenhum advogado cadastrado.",
+    "follow up": {
+        "0": [
+            "25/07/18",
+            "Expedição de Citação",
+            "  Para NEXTEL TELECOMUNICACOES LTDA"
+        ],
+        "1": [
+            "25/07/18",
+            "Intimação lido(a)",
+            "  (Para MARCIO FRANCA MONTEIRO) em 25/07/18 *Referente ao evento Audiência  Una Designada(25/07/18)"
+        ],
+        "2": [
+            "25/07/18",
+            "Audiência  Una Designada",
+            "  (Agendada para 28 de Agosto de 2018 às 07:30 h)"
+        ],
+        "3": [
+            "25/07/18",
+            "Conclusos para Pedido Urgência",
+            "\n"
+        ],
+        "4": [
+            "25/07/18",
+            "Distribuído por Sorteio",
+            "  13ª VSJE DO CONSUMIDOR (MATUTINO)"
+        ],
+        "5": [
+            "25/07/18",
+            "Recebido pelo Distribuidor",
+            "\n"
+        ]
+    }
+}
