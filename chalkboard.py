@@ -104,15 +104,14 @@ def get_partiespp():
     if partes != None:
         partest = partes.get_text()
         partiespp = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '').replace('\t',
-        ' ').replace('                            ',' ').replace('         ','').replace('         ','').replace('\r','')
+        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('\t','').replace('\r','').replace('        ','')
         return partiespp
     else:
         partes = soup.find(id = 'tabelaPartes0')
         if partes != None:
             partest= partes.get_text()
             partiespp_ = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
+        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('\t','').replace('\r','').replace('        ','')
             partiespp = partiespp_[9:] 
             return partiespp
         else:
@@ -120,7 +119,7 @@ def get_partiespp():
         if partes != None:
             partest= partes.get_text()
             partiespp_ = partest.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')
+        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('\t','').replace('\r','').replace('        ','')
             partiespp = partiespp_[9:] 
             return partiespp
         else:
@@ -139,7 +138,7 @@ def get_partiespa():
         if partespa != None:
             partespa_ = partespa.get_text()
             partiespa_ = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')   
+        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('\t','').replace('\r','').replace('        ','')  
             partiespa = partiespa_[9:]
             return partiespa
         else:
@@ -147,14 +146,14 @@ def get_partiespa():
         if partespa != None:
             partespa_ = partespa.get_text()
             partiespa_ = partespa_.replace('Não disponível', '').replace('Mostrar/Ocultar', 
-            '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('         ', '')   
+        '').replace('Nome\nIdentidade\nCPF\nAdvogados\nEndereço\n', '').replace('\n', '').replace('\t','').replace('\r','').replace('        ','')
             partiespa = partiespa_[9:]
             return partiespa
         else:
             return ''
 
 
-print ('Polo Passivo:', get_partiespp(), '\n','Polo Ativo: ', get_partiespa(), '\n')
+#print ('Polo Passivo:', get_partiespp(), '\n','Polo Ativo: ', get_partiespa(), '\n')
 
 #GET LAWYERS DATA:
 
@@ -211,9 +210,7 @@ def find_lawpa():
         else:
             return ''
 
-
 #print('Advogados Polo Ativo:', find_lawpa(), '\n Advogados Polo Passivo:',find_lawpp())
-
 
 #GET FOLLOWUP (Needs cleaning):
 
@@ -261,12 +258,6 @@ def get_last_event():
     last_event = last_event_full.replace('\n', '').replace('Último Evento', '')
     return last_event
 
-def extract_lawsuit_id():
-        matcher = re.compile(r"\d{7}-\d{2}\.\d{4}\.\d\.\d{2}.\d{4}")
-        result = matcher.search(soupt)
-        if result:
-            return result.group()
-        return None
 
 def extract_lawsuit_value():
     text = soup.get_text()
@@ -286,13 +277,8 @@ def lawsuit_value(soup):
 #print(lawsuit_value(soup))
 
 
-andamentos = {
-}
-
-
 def folup():
-    andamentos = {
-}
+    andamentos = {}
     i = 0
     for td in soup.find_all(size='2'):
         followup = td.next_element
@@ -318,3 +304,55 @@ additional_info = {
     'subject': get_subject(),
     'situation': get_situation()
 }
+
+#REGEX ATTEMPT
+
+#Lawsuit ID
+def extract_lawsuit_id():
+        matcher = re.compile(r"\d{7}-\d{2}\.\d{4}\.\d\.\d{2}.\d{4}")
+        result = matcher.search(soupt)
+        if result:
+            return result.group()
+        return None
+
+print(extract_lawsuit_id())
+
+#JUDGE (ToFix)
+def extract_lawsuit_judge():
+    extract_judge_regex = re.compile(r"Juiz:([\w ]+)\b ?His")
+    results = extract_judge_regex.search(soupt)
+    if results:
+        return results.group()
+    return None
+
+print(extract_lawsuit_judge())
+
+#LAWSUIT VALUE
+
+def lawsuit_value():
+    declared_value = re.search(r"\n?R\$(.*)", soupt)
+    if declared_value:
+        return declared_value.group()
+    return None
+
+print(lawsuit_value())
+
+#PARTIES (Broken)
+def extract_lawsuit_parties():
+    extract_party_regex = re.compile(r"Executado([\w ]+)")
+    results = extract_party_regex.search(soupt)
+    if results:
+        return results.group()
+    return None
+
+print(extract_lawsuit_parties())
+
+#CLASS
+def extract_lawsuit_class():
+    extract_class_regex = re.compile(r"Prioridade Processual:(.*)")
+    results = extract_class_regex.search(soupt)
+    if results:
+        return results.group()
+    return None
+
+print(extract_lawsuit_class())

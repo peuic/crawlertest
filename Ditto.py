@@ -41,7 +41,7 @@ for idd in law_ids:
     #data = b.html
 
     cookies = {
-    'JSESSIONID': 'DDE29BBC3C6CC0CEB201F7F0C17957CC.tomcat21',
+    'JSESSIONID': '0D25F442B2505C6B1C0282A32559CFE2.tomcat21',
 } 
 
     r = requests.post(url1, cookies=cookies)
@@ -281,7 +281,6 @@ for idd in law_ids:
             else:
                 return ''
 
-
     #GET FOLLOWUP :
 
     def get_followup():
@@ -295,7 +294,7 @@ for idd in law_ids:
             datet = str(date_)
             date = datet.replace('<td align="center" nowrap="" width="100">', '').replace('</td>','')
             if date != '\n':
-                andamentos.update({str(i):[date,followup, details]})
+                andamentos.update({str(i):[date,followup,details]})
                 i += 1
         return andamentos
 
