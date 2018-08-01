@@ -1,16 +1,9 @@
-"""I started retrieving data from the downloaded lawsuit HTML document using BeautifulSoup.
-Identifying the patterns of the tables in the document, i could pull some data such as
-lawsuit number, lawyers and parties' names.
-
-To access differents lawsuits you need to change the number on the file from 1 to 19. Ex: ProcessoX.html"""
-
-
 from bs4 import BeautifulSoup
 import re
 import urllib3
 
 
-r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo1.html', encoding = "ISO-8859-1")
+r = open('/Users/peuic/Documents/Projetos/crawlertest/Processos/Processo20.html', encoding = "ISO-8859-1")
 data = r.read()
 r.close()
 soup = BeautifulSoup(data, 'html.parser')
@@ -65,11 +58,14 @@ def get_court():
 #GET LAWSUIT'S CLASS
 
 def get_class():
-    classe_in = soupt.find('Classe:')
-    classe_out = soupt.find('Segredo de Justiça')
-    classe_ = soupt[classe_in:classe_out]
-    classe = classe_.replace('\n', '').replace('Este processo possui 1 suspeita de prevenção', '')
-    return classe
+    class_in = soupt.find('Classe:')
+    class_out = soupt.find('Segredo de Justiça')
+    class_raw = soupt[class_in:class_out]
+    class_group = class_raw.replace('\n', '').replace('Classe:','').split(' « ')
+    class_ = class_group[0]
+    return class_
+
+#print(get_class())
 
 #print(get_class())
 
@@ -229,8 +225,11 @@ def get_subject():
     subject_in = soupt.find('Assunto:')
     subject_out = soupt.find('Complementares:')
     subject_full = soupt[subject_in:subject_out]
-    subject = subject_full.replace('\n','').replace('Assunto:','').replace('\xa0\xa0', '')
+    subject_group = subject_full.replace('\n','').replace('Assunto:','').replace('\xa0\xa0', '').split(' « ')
+    subject = subject_group[0]
     return subject
+
+#print(get_subject())
 
 #DATA DE DISTRIBUIÇAO
 
@@ -247,9 +246,10 @@ def get_situation():
     situation_in = soupt.find('Situação:')
     situation_out = soupt.find('Data de Distribuição')
     situation_full = soupt[situation_in:situation_out]
-    situation = situation_full.replace('\n', '')
+    situation = situation_full.replace('\n', '').replace('Situação: ', '')
     return situation
 
+print(get_situation())
 
 def get_last_event():
     last_event_in = soupt.find('Último Evento')
@@ -305,54 +305,254 @@ additional_info = {
     'situation': get_situation()
 }
 
+#AREA
+
+area_in = soupt.find('Assunto:')
+area_out = soupt.find('Complementares:')
+area_raw = soupt[area_in:area_out]
+area_group = area_raw.replace('\n','').replace('Assunto:','').replace('\xa0\xa0', '').split(' « ')
+area = area_group[-1]
+#print(area)
+
+
 #REGEX ATTEMPT
 
 #Lawsuit ID
 def extract_lawsuit_id():
-        matcher = re.compile(r"\d{7}-\d{2}\.\d{4}\.\d\.\d{2}.\d{4}")
-        result = matcher.search(soupt)
-        if result:
-            return result.group()
-        return None
+    matcher = re.compile(r"\d{7}-\d{2}\.\d{4}\.\d\.\d{2}.\d{4}")
+    result = matcher.search(soupt)
+    if result:
+        return result.group()
+    return 
 
-print(extract_lawsuit_id())
+#print(extract_lawsuit_id())
 
 #JUDGE (ToFix)
 def extract_lawsuit_judge():
-    extract_judge_regex = re.compile(r"Juiz:([\w ]+)\b ?His")
-    results = extract_judge_regex.search(soupt)
+    extract_judge_regex = re.compile(r"Juiz: (.*?)Histórico")
+    results= extract_judge_regex.search(soupt)
     if results:
-        return results.group()
+        return results.group(1)
     return None
 
-print(extract_lawsuit_judge())
+#print(extract_lawsuit_judge())
 
 #LAWSUIT VALUE
 
 def lawsuit_value():
-    declared_value = re.search(r"\n?R\$(.*)", soupt)
-    if declared_value:
-        return declared_value.group()
+    value = re.search(r"\n?R\$(.*)", soupt)
+    if value:
+        return value.group()
     return None
 
-print(lawsuit_value())
+#print(lawsuit_value())
 
-#PARTIES (Broken)
-def extract_lawsuit_parties():
-    extract_party_regex = re.compile(r"Executado([\w ]+)")
-    results = extract_party_regex.search(soupt)
+#DATE
+def extract_lawsuit_date():
+    extract_date_regex = re.compile(r"\d [\w ]+ \d{4}")
+    results = extract_date_regex.search(soupt)
     if results:
         return results.group()
-    return None
-
-print(extract_lawsuit_parties())
+    return
+###print(extract_lawsuit_date())
 
 #CLASS
-def extract_lawsuit_class():
-    extract_class_regex = re.compile(r"Prioridade Processual:(.*)")
-    results = extract_class_regex.search(soupt)
+def extract_lawsuit_court():
+    extract_court_regex = re.compile(r"Juízo:\n(.*) Juiz:")
+    results = extract_court_regex.search(soupt)
     if results:
-        return results.group()
+        return results.group(1)
+    return None
+print(extract_lawsuit_court())
+
+#TESTER
+
+def extract_lawsuit_latest_event():
+    extract_phase_regex = re.compile(r"Último Evento\n(.*)")
+    results = extract_phase_regex.search(soupt)
+    if results:
+        return results.group(1)
     return None
 
-print(extract_lawsuit_class())
+#print(extract_lawsuit_latest_event())    
+
+
+def extract_lawsuit_test():
+    extract_test_regex = re.compile(r"Situação:\n (.*)")
+    results = extract_test_regex.search(soupt)
+    if results:
+        return results.group(1)
+    return None
+
+#print(extract_lawsuit_test())
+
+def get_party_active_role():
+    party = []
+    test = soup.find(id = 'tabelaPartes14')
+    if test != None:
+        for td in test.find_all('td'):
+            party.append(td.text.replace('\t','').replace('\n','').replace('  ','').replace('Não disponível','').replace('Mostrar/Ocultar',''))
+            for i in party:
+                if i == '':
+                    party.remove(i)
+        return party
+    else:
+        test = soup.find(id = 'tabelaPartes1')
+    if test != None:
+        for td in test.find_all('td'):
+            party.append(td.text.replace('\t','').replace('\n','').replace('  ','').replace('Não disponível','').replace('Mostrar/Ocultar',''))
+            for i in party:
+                if i == '':
+                    party.remove(i)
+        return party
+    else:
+        test = soup.find(id = 'tabelaPartes4')
+    if test != None:
+        for td in test.find_all('td'):
+            party.append(td.text.replace('\t','').replace('\n','').replace('  ','').replace('Não disponível','').replace('Mostrar/Ocultar',''))
+            for i in party:
+                if i == '':
+                    party.remove(i)
+        return party
+    else:
+        test = soup.find(id = 'tabelaPartes30')
+    if test != None:
+        for td in test.find_all('td'):
+            party.append(td.text.replace('\t','').replace('\n','').replace('  ','').replace('Não disponível','').replace('Mostrar/Ocultar',''))
+            for i in party:
+                if i == '':
+                    party.remove(i)
+        return party
+    else:
+        test = soup.find(id = 'tabelaPartes26')
+    if test != None:
+        for td in test.find_all('td'):
+            party.append(td.text.replace('\t','').replace('\n','').replace('  ','').replace('Não disponível','').replace('Mostrar/Ocultar',''))
+            for i in party:
+                if i == '':
+                    party.remove(i)
+        return party
+
+#print(get_party_active_role())
+
+def get_party_passive_role():
+    party = []
+    test = soup.find(id = 'tabelaPartes67')
+    if test != None:
+        for td in test.find_all('td'):
+            party.append(td.text.replace('\t','').replace('\n','').replace('  ','').replace('Não disponível','').replace('Mostrar/Ocultar','').replace('\r',''))
+            for i in party:
+                if i == '':
+                    party.remove(i)
+        return party
+    else:
+        test = soup.find(id = 'tabelaPartes0')
+    if test != None:
+        for td in test.find_all('td'):
+            party.append(td.text.replace('\t','').replace('\n','').replace('  ','').replace('Não disponível','').replace('Mostrar/Ocultar','').replace('\r',''))
+            for i in party:
+                if i == '':
+                    party.remove(i)
+        return party
+    else:
+        test = soup.find(id = 'tabelaPartes16')
+    if test != None:
+        for td in test.find_all('td'):
+            party.append(td.text.replace('\t','').replace('\n','').replace('  ','').replace('Não disponível','').replace('Mostrar/Ocultar','').replace('\r',''))
+            for i in party:
+                if i == '':
+                    party.remove(i)
+        return party
+    else:
+        test = soup.find(id = 'tabelaPartes29')
+    if test != None:
+        for td in test.find_all('td'):
+            party.append(td.text.replace('\t','').replace('\n','').replace('  ','').replace('Não disponível','').replace('Mostrar/Ocultar','').replace('\r',''))
+            for i in party:
+                if i == '':
+                    party.remove(i)
+        return party
+    else:
+        test = soup.find(id = 'tabelaPartes25')
+    if test != None:
+        for td in test.find_all('td'):
+            party.append(td.text.replace('\t','').replace('\n','').replace('  ','').replace('Não disponível','').replace('Mostrar/Ocultar','').replace('\r',''))
+            for i in party:
+                if i == '':
+                    party.remove(i)
+        return party
+
+#print(get_party_passive_role())
+
+
+def extract_lawyer_passive_role():
+    lawyers = []
+    test =  soup.find(id = 'tabelaAdvogadoPartes29')
+    if test != None:
+        for td in test.find_all('td'):
+            lawyers.append(td.text.replace('\n','').replace('\t','').replace('  ','').replace('\r',''))
+        return lawyers
+    else:
+        test =  soup.find(id = 'tabelaAdvogadoPartes0')
+    if test != None:
+        for td in test.find_all('td'):
+            lawyers.append(td.text.replace('\n','').replace('\t','').replace('  ','').replace('\r',''))
+        return lawyers
+    else:
+        test =  soup.find(id = 'tabelaAdvogadoPartes16')
+    if test != None:
+        for td in test.find_all('td'):
+            lawyers.append(td.text.replace('\n','').replace('\t','').replace('  ','').replace('\r',''))
+        return lawyers
+    else:
+        test =  soup.find(id = 'tabelaAdvogadoPartes67')
+    if test != None:
+        for td in test.find_all('td'):
+            lawyers.append(td.text.replace('\n','').replace('\t','').replace('  ','').replace('\r',''))
+        return lawyers
+    else:
+        test =  soup.find(id = 'tabelaAdvogadoPartes25')
+    if test != None:
+        for td in test.find_all('td'):
+            lawyers.append(td.text.replace('\n','').replace('\t','').replace('  ','').replace('\r',''))
+        return lawyers
+    else:
+        return None
+
+#print(extract_lawyer_passive_role())
+
+def extract_lawyer_active_role():
+    lawyers = []
+    test =  soup.find(id = 'tabelaAdvogadoPartes14')
+    if test != None:
+        for td in test.find_all('td'):
+            lawyers.append(td.text.replace('\n','').replace('\t','').replace('  ','').replace('\r',''))
+        return lawyers
+    else:
+        test =  soup.find(id = 'tabelaAdvogadoPartes1')
+    if test != None:
+        for td in test.find_all('td'):
+            lawyers.append(td.text.replace('\n','').replace('\t','').replace('  ','').replace('\r',''))
+        return lawyers
+    else:
+        test =  soup.find(id = 'tabelaAdvogadoPartes4')
+    if test != None:
+        for td in test.find_all('td'):
+            lawyers.append(td.text.replace('\n','').replace('\t','').replace('  ','').replace('\r',''))
+        return lawyers
+    else:
+        test =  soup.find(id = 'tabelaAdvogadoPartes30')
+    if test != None:
+        for td in test.find_all('td'):
+            lawyers.append(td.text.replace('\n','').replace('\t','').replace('  ','').replace('\r',''))
+        return lawyers
+    else:
+        test =  soup.find(id = 'tabelaAdvogadoPartes26')
+    if test != None:
+        for td in test.find_all('td'):
+            lawyers.append(td.text.replace('\n','').replace('\t','').replace('  ','').replace('\r',''))
+        return lawyers
+    else:
+        return None
+
+#print(extract_lawyer_active_role())

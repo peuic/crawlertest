@@ -41,7 +41,7 @@ for idd in law_ids:
     #data = b.html
 
     cookies = {
-    'JSESSIONID': '0D25F442B2505C6B1C0282A32559CFE2.tomcat21',
+    'JSESSIONID': '6E0926D783832BFA47C2EB13F6C62DED.tomcat61',
 } 
 
     r = requests.post(url1, cookies=cookies)
@@ -217,32 +217,32 @@ for idd in law_ids:
     #ADVOGADOS POLO PASSIVO:
 
     def find_lawpp():
-        s_lawyer = soup.find(id = 'tabelaAdvogadoPartes29')
-        if s_lawyer != None:
-            lawyer_ = s_lawyer.get_text()
-            lawyer_full = lawyer_[20:]
-            lawyer_passive = lawyer_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+        lawyer_raw = soup.find(id = 'tabelaAdvogadoPartes29')
+        if lawyer_raw != None:
+            lawyer_text = lawyer_raw.get_text()
+            lawyer_text_raw = lawyer_text[20:]
+            lawyer_passive = lawyer_text_raw.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
             return lawyer_passive
         else:
-            s_lawyer = soup.find(id = 'tabelaAdvogadoPartes0')
-            if s_lawyer != None:
-                lawyer_ = s_lawyer.get_text()
-                lawyer_full = lawyer_[20:]
-                lawyer_passive = lawyer_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+            lawyer_raw = soup.find(id = 'tabelaAdvogadoPartes0')
+            if lawyer_raw != None:
+                lawyer_text = lawyer_raw.get_text()
+                lawyer_text_raw = lawyer_text[20:]
+                lawyer_passive = lawyer_text_raw.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
                 return lawyer_passive
             else:
-                s_lawyer = soup.find(id = 'tabelaAdvogadoPartes16')
-            if s_lawyer != None:
-                lawyer_ = s_lawyer.get_text()
-                lawyer_full = lawyer_[20:]
-                lawyer_passive = lawyer_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+                lawyer_raw = soup.find(id = 'tabelaAdvogadoPartes16')
+            if lawyer_raw != None:
+                lawyer_text = lawyer_raw.get_text()
+                lawyer_text_raw = lawyer_text[20:]
+                lawyer_passive = lawyer_text_raw.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
                 return lawyer_passive
             else:
-                s_lawyer = soup.find(id = 'tabelaAdvogadoPartes67')
-            if s_lawyer != None:
-                lawyer_ = s_lawyer.get_text()
-                lawyer_full = lawyer_[20:]
-                lawyer_passive = lawyer_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+                lawyer_raw = soup.find(id = 'tabelaAdvogadoPartes67')
+            if lawyer_raw != None:
+                lawyer_text = lawyer_raw.get_text()
+                lawyer_text_raw = lawyer_text[20:]
+                lawyer_passive = lawyer_text_raw.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
                 return lawyer_passive
             else:
                 return''
@@ -251,32 +251,32 @@ for idd in law_ids:
     #ADVOGADOS POLO ATIVO:
 
     def find_lawpa():   
-        ss_lawyer = soup.find(id = 'tabelaAdvogadoPartes30')
-        if ss_lawyer != None:
-            lawyer_a = ss_lawyer.get_text()
-            lawyer_a_full = lawyer_a[20:]
-            lawyer_active = lawyer_a_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+        lawyer_raw = soup.find(id = 'tabelaAdvogadoPartes30')
+        if lawyer_raw != None:
+            lawyer_text = ss_lawyer.get_text()
+            lawyer_text_raw = lawyer_text[20:]
+            lawyer_active = lawyer_text_raw.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
             return lawyer_active
         else:
-            ss_lawyer = soup.find(id = 'tabelaAdvogadoPartes1')
-            if ss_lawyer != None:
-                lawyer_a = ss_lawyer.get_text()
-                lawyer_a_full = lawyer_a[20:]
-                lawyer_active = lawyer_a_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+            lawyer_raw = soup.find(id = 'tabelaAdvogadoPartes1')
+            if lawyer_raw != None:
+                lawyer_text = lawyer_raw.get_text()
+                lawyer_text_raw = lawyer_text[20:]
+                lawyer_active = lawyer_text_raw.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
                 return lawyer_active
             else:
-                ss_lawyer = soup.find(id = 'tabelaAdvogadoPartes4')
-            if ss_lawyer != None:
-                lawyer_a = ss_lawyer.get_text()
-                lawyer_a_full = lawyer_a[20:]
-                lawyer_active = lawyer_a_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+                lawyer_raw = soup.find(id = 'tabelaAdvogadoPartes4')
+            if lawyer_raw != None:
+                lawyer_text = lawyer_raw.get_text()
+                lawyer_text_raw = lawyer_text[20:]
+                lawyer_active = lawyer_text_raw.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
                 return lawyer_active
             else:
-                ss_lawyer = soup.find(id = 'tabelaAdvogadoPartes14')
-            if ss_lawyer != None:
-                lawyer_a = ss_lawyer.get_text()
-                lawyer_a_full = lawyer_a[20:]
-                lawyer_active = lawyer_a_full.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
+                lawyer_raw = soup.find(id = 'tabelaAdvogadoPartes14')
+            if lawyer_raw != None:
+                lawyer_text = lawyer_raw.get_text()
+                lawyer_text_raw = lawyer_text[20:]
+                lawyer_active = lawyer_text_raw.replace('\n', ' ').replace('  ', '').replace('			 ',' ').replace('\t','').replace('\r','')
                 return lawyer_active
             else:
                 return ''
@@ -284,19 +284,19 @@ for idd in law_ids:
     #GET FOLLOWUP :
 
     def get_followup():
-        andamentos = {}
+        followup = {}
         i = 0
         for td in soup.find_all(size='2'):
-            followup = td.next_element
-            details_ = followup.next_element.next_element.next_element
+            followups = td.next_element
+            details_ = followups.next_element.next_element.next_element
             details = str(details_).replace('\r\n', '').replace('                                                                    ', '')
             date_ = details_.next_element.next_element
             datet = str(date_)
             date = datet.replace('<td align="center" nowrap="" width="100">', '').replace('</td>','')
             if date != '\n':
-                andamentos.update({str(i):[date,followup,details]})
+                followup.update({str(i):[date,followups,details]})
                 i += 1
-        return andamentos
+        return followup
 
     
     print('Lawsuit '+get_id()+' acquired')
